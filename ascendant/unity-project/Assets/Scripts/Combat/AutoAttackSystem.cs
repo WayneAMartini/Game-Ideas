@@ -6,38 +6,54 @@ namespace Ascendant.Combat
 {
     public class AutoAttackSystem : MonoBehaviour
     {
-        float _attackTimer;
+        float[] _attackTimers = new float[4];
 
         void Update()
         {
             if (GameManager.Instance == null || GameManager.Instance.CurrentState != GameState.Combat)
                 return;
 
+            var partyManager = Party.PartyManager.Instance;
+            if (partyManager == null)
+            {
+                // Fallback to HeroManager for backward compatibility
+                FallbackUpdate();
+                return;
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                var hero = partyManager.GetHero(i);
+                if (hero == null || !hero.IsAlive) continue;
+
+                ProcessHeroAutoAttack(hero, i);
+            }
+        }
+
+        void FallbackUpdate()
+        {
             var heroManager = HeroManager.Instance;
             if (heroManager == null) return;
 
-            // Process auto-attacks for all heroes
             for (int i = 0; i < heroManager.HeroCount; i++)
             {
                 var hero = heroManager.GetHero(i);
                 if (hero == null || !hero.IsAlive) continue;
 
-                ProcessHeroAutoAttack(hero);
+                ProcessHeroAutoAttack(hero, i);
             }
         }
 
-        void ProcessHeroAutoAttack(Hero hero)
+        void ProcessHeroAutoAttack(Hero hero, int timerIndex)
         {
-            // SPD = attacks per second
+            if (timerIndex < 0 || timerIndex >= _attackTimers.Length) return;
+
             float attackInterval = 1f / Mathf.Max(0.1f, hero.CurrentSpd);
+            _attackTimers[timerIndex] += Time.deltaTime;
 
-            // Use a shared timer approach — in Phase 1 with one hero this is simple.
-            // For multi-hero we'd track per-hero timers.
-            _attackTimer += Time.deltaTime;
-
-            if (_attackTimer >= attackInterval)
+            if (_attackTimers[timerIndex] >= attackInterval)
             {
-                _attackTimer -= attackInterval;
+                _attackTimers[timerIndex] -= attackInterval;
                 PerformAutoAttack(hero);
             }
         }
@@ -47,11 +63,17 @@ namespace Ascendant.Combat
             var target = EnemyManager.Instance?.GetNearestEnemy(hero.transform.position);
             if (target == null || target.IsDead) return;
 
-            float damage = DamageCalculator.CalculateAutoAttackDamage(hero.CurrentAtk, target.Def);
+            // Determine damage type from hero class
+            DamageType damageType = GetHeroDamageType(hero);
 
-            // Apply affinity bonus
-            float affinityBonus = AffinityHelper.GetMultiplier(hero.Affinity, target.Affinity);
-            damage *= affinityBonus;
+            // Get position bonus from PartyManager
+            float positionBonus = 0f;
+            var partyManager = Party.PartyManager.Instance;
+            if (partyManager != null)
+                positionBonus = partyManager.GetDamageBonus(hero.Slot);
+
+            float damage = DamageCalculator.CalculateAutoAttackFull(
+                hero.CurrentAtk, damageType, hero.Affinity, target, positionBonus);
 
             target.TakeDamage(damage);
 
@@ -70,6 +92,18 @@ namespace Ascendant.Combat
                 IsAoE = false,
                 WorldPosition = target.transform.position
             });
+        }
+
+        static DamageType GetHeroDamageType(Hero hero)
+        {
+            if (hero.Data == null) return DamageType.Physical;
+
+            return hero.Data.role switch
+            {
+                HeroRole.Caster => DamageType.Magical,
+                HeroRole.Support => DamageType.Magical,
+                _ => DamageType.Physical
+            };
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Ascendant.Combat
 
         int _tapCount;
         Heroes.ITapMechanic _activeTapMechanic;
+        Heroes.ITapMechanic[] _partyTapMechanics;
 
         public int TapCount => _tapCount;
         public float BaseTapPower => _baseTapPower;
@@ -21,6 +22,11 @@ namespace Ascendant.Combat
         public void SetTapMechanic(Heroes.ITapMechanic mechanic)
         {
             _activeTapMechanic = mechanic;
+        }
+
+        public void SetPartyTapMechanics(Heroes.ITapMechanic[] mechanics)
+        {
+            _partyTapMechanics = mechanics;
         }
 
         void Update()
@@ -67,8 +73,16 @@ namespace Ascendant.Combat
             Vector3 worldPos = GameManager.Instance.MainCamera.ScreenToWorldPoint(
                 new Vector3(screenPos.x, screenPos.y, 10f));
 
-            // Let the active tap mechanic process (e.g., Warrior shockwave on 5th tap)
-            _activeTapMechanic?.OnTap(_tapCount, damage, worldPos);
+            // Let all party tap mechanics process
+            if (_partyTapMechanics != null)
+            {
+                foreach (var mechanic in _partyTapMechanics)
+                    mechanic?.OnTap(_tapCount, damage, worldPos);
+            }
+            else
+            {
+                _activeTapMechanic?.OnTap(_tapCount, damage, worldPos);
+            }
 
             // Deal damage to nearest enemy
             var target = EnemyManager.Instance?.GetNearestEnemy(worldPos);
@@ -96,9 +110,20 @@ namespace Ascendant.Combat
 
         float GetHeroTapBonus()
         {
-            // In Phase 1, use the Warrior's ATK as tap bonus
-            var hero = Heroes.HeroManager.Instance?.GetPrimaryHero();
-            return hero?.CurrentAtk ?? 0f;
+            // Sum tap bonuses from all party heroes
+            var partyManager = Party.PartyManager.Instance;
+            if (partyManager != null)
+            {
+                float totalBonus = 0f;
+                var heroes = partyManager.GetAllAliveHeroes();
+                foreach (var hero in heroes)
+                    totalBonus += hero.CurrentAtk;
+                return totalBonus;
+            }
+
+            // Fallback: single hero
+            var primary = Heroes.HeroManager.Instance?.GetPrimaryHero();
+            return primary?.CurrentAtk ?? 0f;
         }
     }
 }

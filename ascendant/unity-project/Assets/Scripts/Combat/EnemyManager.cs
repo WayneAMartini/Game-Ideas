@@ -85,6 +85,75 @@ namespace Ascendant.Combat
             return alive;
         }
 
+        // Get the enemy with the highest ATK (for Rogue's Ambush targeting)
+        public Enemy GetHighestAtkEnemy()
+        {
+            Enemy highest = null;
+            float highestAtk = float.MinValue;
+
+            for (int i = _activeEnemies.Count - 1; i >= 0; i--)
+            {
+                var enemy = _activeEnemies[i];
+                if (enemy == null || enemy.IsDead)
+                {
+                    _activeEnemies.RemoveAt(i);
+                    continue;
+                }
+
+                if (enemy.Atk > highestAtk)
+                {
+                    highestAtk = enemy.Atk;
+                    highest = enemy;
+                }
+            }
+
+            return highest;
+        }
+
+        // Get a random frontline hero to attack (enemies target frontline first)
+        public Heroes.Hero GetTargetHero(EnemyAttackType attackType)
+        {
+            var partyManager = Party.PartyManager.Instance;
+            if (partyManager == null)
+            {
+                return Heroes.HeroManager.Instance?.GetPrimaryHero();
+            }
+
+            switch (attackType)
+            {
+                case EnemyAttackType.Melee:
+                {
+                    // Melee targets frontline first
+                    var frontline = partyManager.GetAliveFrontline();
+                    if (frontline.Length > 0)
+                        return frontline[Random.Range(0, frontline.Length)];
+                    // If no frontline alive, target backline
+                    var backline = partyManager.GetAliveBackline();
+                    if (backline.Length > 0)
+                        return backline[Random.Range(0, backline.Length)];
+                    return null;
+                }
+
+                case EnemyAttackType.Ranged:
+                {
+                    // Ranged can target anyone
+                    var allAlive = partyManager.GetAllAliveHeroes();
+                    if (allAlive.Length > 0)
+                        return allAlive[Random.Range(0, allAlive.Length)];
+                    return null;
+                }
+
+                case EnemyAttackType.AoE:
+                {
+                    // AoE hits all — return null to signal "hit everyone"
+                    return null;
+                }
+
+                default:
+                    return partyManager.GetHero(0);
+            }
+        }
+
         public void ClearAll()
         {
             for (int i = _activeEnemies.Count - 1; i >= 0; i--)

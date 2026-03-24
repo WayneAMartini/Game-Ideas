@@ -54,9 +54,24 @@ namespace Ascendant.Economy
         {
             _xp += amount;
 
-            // Also give XP to the active hero
-            var hero = Heroes.HeroManager.Instance?.GetPrimaryHero();
-            hero?.AddXp((float)amount);
+            // Distribute XP to all party heroes
+            var partyManager = Party.PartyManager.Instance;
+            if (partyManager != null)
+            {
+                var heroes = partyManager.GetAllAliveHeroes();
+                if (heroes.Length > 0)
+                {
+                    float perHeroXp = (float)amount / heroes.Length;
+                    foreach (var hero in heroes)
+                        hero.AddXp(perHeroXp);
+                }
+            }
+            else
+            {
+                // Fallback: give XP to primary hero
+                var hero = Heroes.HeroManager.Instance?.GetPrimaryHero();
+                hero?.AddXp((float)amount);
+            }
 
             EventBus.Publish(new CurrencyChangedEvent
             {

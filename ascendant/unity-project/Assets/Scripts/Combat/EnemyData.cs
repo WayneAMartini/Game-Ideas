@@ -9,6 +9,8 @@ namespace Ascendant.Combat
         public string enemyName;
         public Sprite sprite;
         public Affinity affinity;
+        public EnemyCategory category;
+        public EnemyAttackType attackType = EnemyAttackType.Melee;
 
         [Header("Base Stats (Stage 1)")]
         public float baseHp = 50f;

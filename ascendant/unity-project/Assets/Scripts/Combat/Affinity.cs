@@ -11,6 +11,14 @@ namespace Ascendant.Combat
         Radiance
     }
 
+    public enum BiomeAffinityRelation
+    {
+        Neutral,
+        Home,        // Same affinity as biome
+        Advantage,   // Hero's affinity beats biome affinity
+        Disadvantage // Hero's affinity loses to biome affinity
+    }
+
     public static class AffinityHelper
     {
         // Returns the damage multiplier when attacker hits defender.
@@ -38,6 +46,53 @@ namespace Ascendant.Combat
             if (attacker == Affinity.Radiance && defender == Affinity.Shadow) return 1.3f;
 
             return 1f;
+        }
+
+        // Returns the relationship between a hero's affinity and a biome's affinity
+        public static BiomeAffinityRelation GetBiomeRelation(Affinity heroAffinity, Affinity biomeAffinity)
+        {
+            if (heroAffinity == Affinity.None || biomeAffinity == Affinity.None)
+                return BiomeAffinityRelation.Neutral;
+
+            if (heroAffinity == biomeAffinity)
+                return BiomeAffinityRelation.Home;
+
+            // Check if hero has advantage over biome
+            float multiplier = GetMultiplier(heroAffinity, biomeAffinity);
+            if (multiplier > 1f)
+                return BiomeAffinityRelation.Advantage;
+            if (multiplier < 1f)
+                return BiomeAffinityRelation.Disadvantage;
+
+            return BiomeAffinityRelation.Neutral;
+        }
+
+        // Biome damage bonus based on hero-biome relationship
+        // Home: +25% damage, Advantage: +50%, Disadvantage: -20%
+        public static float GetBiomeDamageMultiplier(Affinity heroAffinity, Affinity biomeAffinity)
+        {
+            var relation = GetBiomeRelation(heroAffinity, biomeAffinity);
+            return relation switch
+            {
+                BiomeAffinityRelation.Home => 1.25f,
+                BiomeAffinityRelation.Advantage => 1.50f,
+                BiomeAffinityRelation.Disadvantage => 0.80f,
+                _ => 1f
+            };
+        }
+
+        // Biome damage taken modifier
+        // Home: -10% taken, Advantage: -20% taken, Disadvantage: +10% taken
+        public static float GetBiomeDamageTakenMultiplier(Affinity heroAffinity, Affinity biomeAffinity)
+        {
+            var relation = GetBiomeRelation(heroAffinity, biomeAffinity);
+            return relation switch
+            {
+                BiomeAffinityRelation.Home => 0.90f,
+                BiomeAffinityRelation.Advantage => 0.80f,
+                BiomeAffinityRelation.Disadvantage => 1.10f,
+                _ => 1f
+            };
         }
     }
 }

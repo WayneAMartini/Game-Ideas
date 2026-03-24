@@ -144,4 +144,30 @@ namespace Ascendant.Core
         public int EnemyId;
         public float Damage;
     }
+
+    public struct PartyChangedEvent { }
+
+    public struct ComboPointsChangedEvent
+    {
+        public int ComboPoints;
+        public int MaxComboPoints;
+    }
+
+    public struct FinishingBlowEvent
+    {
+        public float Damage;
+        public UnityEngine.Vector3 WorldPosition;
+    }
+
+    public struct HeroDeathEvent
+    {
+        public int HeroSlot;
+    }
+
+    public struct HeroRevivedEvent
+    {
+        public int HeroSlot;
+        public float CurrentHp;
+        public float MaxHp;
+    }
 }

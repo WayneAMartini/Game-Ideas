@@ -6,10 +6,15 @@ namespace Ascendant.Heroes
     {
         public static HeroManager Instance { get; private set; }
 
-        [SerializeField] Hero[] _heroes; // party slots (up to 4, Phase 1 uses 1)
+        [SerializeField] Hero[] _heroes; // party slots (up to 4)
 
         public Hero GetPrimaryHero()
         {
+            // Try PartyManager first, fall back to local array
+            var partyManager = Party.PartyManager.Instance;
+            if (partyManager != null)
+                return partyManager.GetHero(0);
+
             if (_heroes != null && _heroes.Length > 0)
                 return _heroes[0];
             return null;
@@ -17,12 +22,25 @@ namespace Ascendant.Heroes
 
         public Hero GetHero(int slot)
         {
+            var partyManager = Party.PartyManager.Instance;
+            if (partyManager != null)
+                return partyManager.GetHero(slot);
+
             if (_heroes != null && slot >= 0 && slot < _heroes.Length)
                 return _heroes[slot];
             return null;
         }
 
-        public int HeroCount => _heroes != null ? _heroes.Length : 0;
+        public int HeroCount
+        {
+            get
+            {
+                var partyManager = Party.PartyManager.Instance;
+                if (partyManager != null)
+                    return partyManager.PartySize;
+                return _heroes != null ? _heroes.Length : 0;
+            }
+        }
 
         void Awake()
         {

@@ -26,7 +26,9 @@ namespace Ascendant.Combat
         public float Def => _def;
         public bool IsDead => _isDead;
         public Affinity Affinity => _data != null ? _data.affinity : Affinity.None;
+        public EnemyCategory Category => _data != null ? _data.category : EnemyCategory.Humanoid;
         public string EnemyName => _data != null ? _data.enemyName : "Unknown";
+        public EnemyAttackType AttackType => _data != null ? _data.attackType : EnemyAttackType.Melee;
 
         public void Initialize(EnemyData data, int stage)
         {
@@ -51,6 +53,23 @@ namespace Ascendant.Combat
             if (_isDead) return;
 
             _currentHp -= damage;
+
+            if (_currentHp <= 0f)
+            {
+                _currentHp = 0f;
+                Die();
+            }
+        }
+
+        // Overload with damage type for type advantage calculations
+        public void TakeDamage(float damage, DamageType damageType)
+        {
+            if (_isDead) return;
+
+            float typeMultiplier = DamageTypeHelper.GetTypeMultiplier(damageType, Category);
+            float finalDamage = damage * typeMultiplier;
+
+            _currentHp -= finalDamage;
 
             if (_currentHp <= 0f)
             {
