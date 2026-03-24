@@ -1,0 +1,13 @@
+{
+    "abilityName": "Ascendant Blade",
+    "description": "Leaps skyward and slams down for 800% ATK in a massive AoE; enemies hit are stunned for 2 seconds.",
+    "slotIndex": 2,
+    "damageMultiplier": 8.0,
+    "cooldown": 0,
+    "targetType": "AllEnemies",
+    "isUltimate": true,
+    "buffMultiplier": 0,
+    "buffDuration": 0,
+    "stunDuration": 2.0,
+    "chargeRequired": 100.0
+}

@@ -1,0 +1,14 @@
+{
+    "enemyName": "Wolf",
+    "affinity": "Nature",
+    "baseHp": 35,
+    "baseAtk": 9,
+    "baseDef": 2,
+    "baseGoldDrop": 10,
+    "baseXpDrop": 5,
+    "hpScalePerStage": 0.07,
+    "atkScalePerStage": 0.07,
+    "defScalePerStage": 0.02,
+    "goldScalePerStage": 0.06,
+    "xpScalePerStage": 0.04
+}

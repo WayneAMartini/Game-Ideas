@@ -1,0 +1,12 @@
+{
+    "enemyHpScalePerStage": 0.08,
+    "enemyAtkScalePerStage": 0.05,
+    "goldScalePerStage": 0.06,
+    "xpScalePerStage": 0.04,
+    "minEnemiesPerWave": 3,
+    "maxEnemiesPerWave": 5,
+    "stagesPerIsland": 100,
+    "miniBossEveryNStages": 10,
+    "stageTransitionDelay": 1.0,
+    "comment": "Stage 1-100 scaling: At stage 50, enemy HP is 4.92x base. At stage 100, enemy HP is 8.92x base. Gold/XP scale slightly slower to create a natural progression wall encouraging ability/level investment."
+}

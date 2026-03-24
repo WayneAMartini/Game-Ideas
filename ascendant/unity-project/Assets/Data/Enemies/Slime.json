@@ -1,0 +1,14 @@
+{
+    "enemyName": "Slime",
+    "affinity": "Nature",
+    "baseHp": 40,
+    "baseAtk": 4,
+    "baseDef": 1,
+    "baseGoldDrop": 8,
+    "baseXpDrop": 4,
+    "hpScalePerStage": 0.08,
+    "atkScalePerStage": 0.04,
+    "defScalePerStage": 0.02,
+    "goldScalePerStage": 0.06,
+    "xpScalePerStage": 0.04
+}

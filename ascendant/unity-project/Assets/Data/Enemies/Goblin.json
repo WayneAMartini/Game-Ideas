@@ -1,0 +1,14 @@
+{
+    "enemyName": "Goblin",
+    "affinity": "Shadow",
+    "baseHp": 55,
+    "baseAtk": 7,
+    "baseDef": 3,
+    "baseGoldDrop": 12,
+    "baseXpDrop": 6,
+    "hpScalePerStage": 0.09,
+    "atkScalePerStage": 0.06,
+    "defScalePerStage": 0.03,
+    "goldScalePerStage": 0.07,
+    "xpScalePerStage": 0.05
+}

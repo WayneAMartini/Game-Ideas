@@ -1,0 +1,13 @@
+{
+    "abilityName": "Cleaving Strike",
+    "description": "Deals 200% ATK to all frontline enemies.",
+    "slotIndex": 0,
+    "damageMultiplier": 2.0,
+    "cooldown": 8.0,
+    "targetType": "FrontlineEnemies",
+    "isUltimate": false,
+    "buffMultiplier": 0,
+    "buffDuration": 0,
+    "stunDuration": 0,
+    "chargeRequired": 0
+}

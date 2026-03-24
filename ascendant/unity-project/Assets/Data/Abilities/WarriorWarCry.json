@@ -1,0 +1,13 @@
+{
+    "abilityName": "War Cry",
+    "description": "Increases party ATK by 15% for 10 seconds.",
+    "slotIndex": 1,
+    "damageMultiplier": 0,
+    "cooldown": 20.0,
+    "targetType": "PartyBuff",
+    "isUltimate": false,
+    "buffMultiplier": 0.15,
+    "buffDuration": 10.0,
+    "stunDuration": 0,
+    "chargeRequired": 0
+}

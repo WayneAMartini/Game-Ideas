@@ -1,0 +1,17 @@
+{
+    "heroName": "Warrior",
+    "className": "Warrior",
+    "classId": "warrior",
+    "role": "Vanguard",
+    "position": "Frontline",
+    "affinity": "Radiance",
+    "baseAtk": 15,
+    "baseDef": 12,
+    "baseHp": 120,
+    "baseSpd": 0.8,
+    "atkGrowth": "Medium",
+    "defGrowth": "Medium",
+    "hpGrowth": "Medium",
+    "spdGrowth": "Low",
+    "baseTapBonus": 5
+}
