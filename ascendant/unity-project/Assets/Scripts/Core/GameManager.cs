@@ -1,4 +1,5 @@
 using UnityEngine;
+using Ascendant.Idle;
 
 namespace Ascendant.Core
 {
@@ -26,6 +27,13 @@ namespace Ascendant.Core
 
         void Start()
         {
+            // Load save data first
+            if (SaveManager.Instance != null)
+                SaveManager.Instance.Load();
+
+            // AFK vault check runs before combat resumes (vault is first thing visible)
+            // AFKVaultSystem.Start() handles the check automatically
+
             SetState(GameState.Combat);
         }
 

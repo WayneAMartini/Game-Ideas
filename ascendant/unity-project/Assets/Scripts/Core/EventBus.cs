@@ -170,4 +170,35 @@ namespace Ascendant.Core
         public float CurrentHp;
         public float MaxHp;
     }
+
+    // --- AFK / Idle Events ---
+
+    public struct AFKVaultReadyEvent
+    {
+        public Idle.AFKRewards Rewards;
+    }
+
+    public struct AFKVaultCollectedEvent
+    {
+        public Idle.AFKRewards Rewards;
+    }
+
+    // --- Expedition Events ---
+
+    public struct ExpeditionStartedEvent
+    {
+        public int SlotIndex;
+        public string ExpeditionId;
+    }
+
+    public struct ExpeditionCompletedEvent
+    {
+        public int SlotIndex;
+        public string ExpeditionId;
+    }
+
+    public struct ExpeditionCollectedEvent
+    {
+        public int SlotIndex;
+    }
 }
