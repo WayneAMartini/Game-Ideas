@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb36ec0a5ac5e4d22b895a26af4ae2f8, type: 3}
+  m_Name: WarriorHeroData
+  m_EditorClassIdentifier: Ascendant::Ascendant.Heroes.HeroData
+  heroName: Warrior
+  className: Warrior
+  classId: warrior
+  portrait: {fileID: 0}
+  role: 0
+  position: 0
+  affinity: 1
+  baseAtk: 15
+  baseDef: 10
+  baseHp: 100
+  baseSpd: 1
+  atkGrowth: 1
+  defGrowth: 2
+  hpGrowth: 2
+  spdGrowth: 0
+  baseTapBonus: 5

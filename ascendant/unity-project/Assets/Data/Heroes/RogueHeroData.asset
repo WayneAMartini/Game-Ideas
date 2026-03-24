@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb36ec0a5ac5e4d22b895a26af4ae2f8, type: 3}
+  m_Name: RogueHeroData
+  m_EditorClassIdentifier: Ascendant::Ascendant.Heroes.HeroData
+  heroName: Rogue
+  className: Rogue
+  classId: rogue
+  portrait: {fileID: 0}
+  role: 1
+  position: 0
+  affinity: 5
+  baseAtk: 20
+  baseDef: 7
+  baseHp: 85
+  baseSpd: 1.3
+  atkGrowth: 2
+  defGrowth: 0
+  hpGrowth: 0
+  spdGrowth: 2
+  baseTapBonus: 7

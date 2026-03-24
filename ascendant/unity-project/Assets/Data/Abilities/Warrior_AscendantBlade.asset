@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc04ed1543914d62bd9c161cfc0b19a, type: 3}
+  m_Name: Warrior_AscendantBlade
+  m_EditorClassIdentifier: Ascendant::Ascendant.Combat.Ability
+  abilityName: Ascendant Blade
+  description: 500% ATK to single enemy + stun 2s
+  icon: {fileID: 0}
+  slotIndex: 2
+  damageMultiplier: 5
+  cooldown: 0
+  targetType: 0
+  isUltimate: 1
+  buffMultiplier: 0
+  buffDuration: 0
+  stunDuration: 2
+  chargeRequired: 100
