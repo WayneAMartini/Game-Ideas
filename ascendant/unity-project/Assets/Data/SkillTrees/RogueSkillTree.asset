@@ -1,0 +1,438 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: RogueSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: rogue
+  className: Rogue
+  branches:
+  - branchId: rogue_assassination
+    branchName: Assassination
+    branchDescription: Finishing Blow damage, crit rate, crit damage.
+    nodes:
+    - nodeId: ra1
+      nodeName: Sharp Blades
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: ra2
+      nodeName: Precision
+      description: Crit Rate +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - ra1
+      statBonuses:
+      - stat: 4
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: ra3
+      nodeName: Exploit Weakness
+      description: Crit Damage +10%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - ra2
+      statBonuses:
+      - stat: 5
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: ra4
+      nodeName: Deadly Finisher
+      description: Finishing Blow +50% damage
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - ra3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: ra5
+      nodeName: Assassin's Mark
+      description: Crit Rate +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - ra3
+      statBonuses:
+      - stat: 4
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: ra6
+      nodeName: Execute
+      description: Extra damage below 30% HP
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - ra4
+      - ra5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: ra7
+      nodeName: Lethality
+      description: ATK +18
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - ra6
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: ra8
+      nodeName: Cold Blood
+      description: Crit Damage +25%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - ra7
+      statBonuses:
+      - stat: 5
+        value: 0.25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: ra9
+      nodeName: Death's Whisper
+      description: ATK +30, guaranteed crit on Finishing Blow
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - ra8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 4
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: rogue_subtlety
+    branchName: Subtlety
+    branchDescription: Dodge chance, movement speed, survivability.
+    nodes:
+    - nodeId: rs1
+      nodeName: Quick Reflexes
+      description: Dodge +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 6
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: rs2
+      nodeName: Shadow Step
+      description: SPD +0.03
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - rs1
+      statBonuses:
+      - stat: 3
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: rs3
+      nodeName: Evasion
+      description: Dodge +4%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - rs2
+      statBonuses:
+      - stat: 6
+        value: 0.04
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: rs4
+      nodeName: Smoke Screen
+      description: Smoke Bomb +2s duration
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - rs3
+      statBonuses:
+      - stat: 6
+        value: 0.03
+      modifiedAbilityId: smoke_bomb
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: rs5
+      nodeName: Fleet Footed
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - rs3
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: rs6
+      nodeName: Ghostly
+      description: Dodge +5%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - rs4
+      - rs5
+      statBonuses:
+      - stat: 6
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: rs7
+      nodeName: Shadow Meld
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - rs6
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: rs8
+      nodeName: Phantom
+      description: Dodge +5%, SPD +0.05
+      nodeType: 0
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - rs7
+      statBonuses:
+      - stat: 6
+        value: 0.05
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: rs9
+      nodeName: Shadow Lord
+      description: Dodge +10%, untargetable 2s after dodge
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - rs8
+      statBonuses:
+      - stat: 6
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: rogue_venom
+    branchName: Venom
+    branchDescription: Poison DoTs, weakening debuffs, AoE poison.
+    nodes:
+    - nodeId: rv1
+      nodeName: Toxic Blade
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: rv2
+      nodeName: Poison Coating
+      description: ATK +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - rv1
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: rv3
+      nodeName: Noxious Strikes
+      description: Attacks apply DoT
+      nodeType: 1
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - rv2
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: rv4
+      nodeName: Crippling Poison
+      description: Enemy ATK debuff on hit
+      nodeType: 0
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - rv3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: rv5
+      nodeName: Venomous Glands
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - rv3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: rv6
+      nodeName: Spreading Poison
+      description: DoT spreads to nearby enemies
+      nodeType: 1
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - rv4
+      - rv5
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: rv7
+      nodeName: Lethal Dose
+      description: ATK +15
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - rv6
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: rv8
+      nodeName: Plague Cloud
+      description: AoE poison on Smoke Bomb
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - rv7
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: smoke_bomb
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: rv9
+      nodeName: Venom Lord
+      description: ATK +30, all attacks poison
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - rv8
+      statBonuses:
+      - stat: 0
+        value: 30
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

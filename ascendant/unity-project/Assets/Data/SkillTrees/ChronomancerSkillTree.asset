@@ -1,0 +1,444 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: ChronomancerSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: chronomancer
+  className: Chronomancer
+  branches:
+  - branchId: chronomancer_acceleration
+    branchName: Acceleration
+    branchDescription: Time haste, speed bursts, temporal rush.
+    nodes:
+    - nodeId: ch_ac1
+      nodeName: Haste
+      description: SPD +0.04
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 3
+        value: 0.04
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: ch_ac2
+      nodeName: Time Skip
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - ch_ac1
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: ch_ac3
+      nodeName: Temporal Rush
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - ch_ac2
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: ch_ac4
+      nodeName: Time Warp
+      description: Haste +party speed buff
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - ch_ac3
+      statBonuses:
+      - stat: 3
+        value: 0.03
+      modifiedAbilityId: haste
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: ch_ac5
+      nodeName: Accelerated Strike
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - ch_ac3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: ch_ac6
+      nodeName: Chrono Boost
+      description: SPD +0.05
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - ch_ac4
+      - ch_ac5
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: ch_ac7
+      nodeName: Time Flux
+      description: ATK +15
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - ch_ac6
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: ch_ac8
+      nodeName: Temporal Surge
+      description: Time Warp +double action
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - ch_ac7
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      - stat: 0
+        value: 12
+      modifiedAbilityId: time_warp
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: ch_ac9
+      nodeName: Time Lord
+      description: SPD +0.10, ATK +25
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - ch_ac8
+      statBonuses:
+      - stat: 3
+        value: 0.1
+      - stat: 0
+        value: 25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: chronomancer_entropy
+    branchName: Entropy
+    branchDescription: Temporal decay, time bombs, critical strikes.
+    nodes:
+    - nodeId: ch_en1
+      nodeName: Temporal Decay
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: ch_en2
+      nodeName: Time Bomb
+      description: Crit Rate +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - ch_en1
+      statBonuses:
+      - stat: 4
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: ch_en3
+      nodeName: Chrono Strike
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - ch_en2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: ch_en4
+      nodeName: Entropy Blast
+      description: Time Bomb +30% detonation
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - ch_en3
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: time_bomb
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: ch_en5
+      nodeName: Focused Time
+      description: Crit Rate +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - ch_en3
+      statBonuses:
+      - stat: 4
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: ch_en6
+      nodeName: Temporal Precision
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - ch_en4
+      - ch_en5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: ch_en7
+      nodeName: Decay Field
+      description: Crit Rate +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - ch_en6
+      statBonuses:
+      - stat: 4
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: ch_en8
+      nodeName: Temporal Annihilation
+      description: Entropy +execute below 20%
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - ch_en7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: entropy
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: ch_en9
+      nodeName: Entropy Master
+      description: ATK +30, Crit Rate +10%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - ch_en8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 4
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: chronomancer_paradox
+    branchName: Paradox
+    branchDescription: Phase shifting, temporal dodges, reality bending.
+    nodes:
+    - nodeId: ch_px1
+      nodeName: Phase Shift
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: ch_px2
+      nodeName: Temporal Dodge
+      description: Dodge +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - ch_px1
+      statBonuses:
+      - stat: 6
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: ch_px3
+      nodeName: Paradox Shift
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - ch_px2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: ch_px4
+      nodeName: Time Fold
+      description: Phase Shift +invulnerable 1s
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - ch_px3
+      statBonuses:
+      - stat: 6
+        value: 0.05
+      modifiedAbilityId: phase_shift
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: ch_px5
+      nodeName: Chrono Sidestep
+      description: Dodge +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - ch_px3
+      statBonuses:
+      - stat: 6
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: ch_px6
+      nodeName: Reality Bend
+      description: ATK +12
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - ch_px4
+      - ch_px5
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: ch_px7
+      nodeName: Temporal Cloak
+      description: Dodge +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - ch_px6
+      statBonuses:
+      - stat: 6
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: ch_px8
+      nodeName: Paradox Storm
+      description: Paradox +AoE time rift
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - ch_px7
+      statBonuses:
+      - stat: 0
+        value: 15
+      - stat: 6
+        value: 0.05
+      modifiedAbilityId: paradox
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: ch_px9
+      nodeName: Paradox Lord
+      description: ATK +25, Dodge +8%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - ch_px8
+      statBonuses:
+      - stat: 0
+        value: 25
+      - stat: 6
+        value: 0.08
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

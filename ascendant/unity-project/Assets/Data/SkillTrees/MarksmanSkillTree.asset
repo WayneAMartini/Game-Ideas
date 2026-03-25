@@ -1,0 +1,440 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: MarksmanSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: marksman
+  className: Marksman
+  branches:
+  - branchId: marksman_sniper
+    branchName: Sniper
+    branchDescription: Precision shots, critical damage, long-range lethality.
+    nodes:
+    - nodeId: mk_sn1
+      nodeName: Steady Aim
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: mk_sn2
+      nodeName: Precision Scope
+      description: Crit Damage +10%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - mk_sn1
+      statBonuses:
+      - stat: 5
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: mk_sn3
+      nodeName: Long Shot
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - mk_sn2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: mk_sn4
+      nodeName: Dead Eye
+      description: Aimed Shot +25% damage
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - mk_sn3
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: aimed_shot
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: mk_sn5
+      nodeName: Extended Range
+      description: Crit Damage +15%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - mk_sn3
+      statBonuses:
+      - stat: 5
+        value: 0.15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: mk_sn6
+      nodeName: Kill Confirmed
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - mk_sn4
+      - mk_sn5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: mk_sn7
+      nodeName: Headhunter
+      description: Crit Damage +20%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - mk_sn6
+      statBonuses:
+      - stat: 5
+        value: 0.2
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: mk_sn8
+      nodeName: Lethal Caliber
+      description: Power Shot +50% crit damage
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - mk_sn7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: power_shot
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: mk_sn9
+      nodeName: One Shot One Kill
+      description: ATK +30, Crit Damage +25%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - mk_sn8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 5
+        value: 0.25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: marksman_barrage
+    branchName: Barrage
+    branchDescription: Rapid fire, attack speed, multi-hit volleys.
+    nodes:
+    - nodeId: mk_ba1
+      nodeName: Rapid Fire
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: mk_ba2
+      nodeName: Quick Load
+      description: SPD +0.03
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - mk_ba1
+      statBonuses:
+      - stat: 3
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: mk_ba3
+      nodeName: Double Tap
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - mk_ba2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: mk_ba4
+      nodeName: Rain of Arrows
+      description: Multi-shot +1 projectile
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - mk_ba3
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: multi_shot
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: mk_ba5
+      nodeName: Swift Hands
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - mk_ba3
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: mk_ba6
+      nodeName: Bullet Storm
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - mk_ba4
+      - mk_ba5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: mk_ba7
+      nodeName: Suppressive Fire
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - mk_ba6
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: mk_ba8
+      nodeName: Hail of Lead
+      description: Volley +30% speed
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - mk_ba7
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: volley
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: mk_ba9
+      nodeName: Lead Hurricane
+      description: ATK +25, SPD +0.08
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - mk_ba8
+      statBonuses:
+      - stat: 0
+        value: 25
+      - stat: 3
+        value: 0.08
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: marksman_tactical
+    branchName: Tactical
+    branchDescription: Defensive awareness, survivability, armored shots.
+    nodes:
+    - nodeId: mk_ta1
+      nodeName: Combat Training
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: mk_ta2
+      nodeName: Fortified Position
+      description: DEF +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - mk_ta1
+      statBonuses:
+      - stat: 1
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: mk_ta3
+      nodeName: Sharpshooter
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - mk_ta2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: mk_ta4
+      nodeName: Covering Fire
+      description: Tactical Shot +25% suppression
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - mk_ta3
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: tactical_shot
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: mk_ta5
+      nodeName: Armored Stance
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - mk_ta3
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: mk_ta6
+      nodeName: Battle Hardened
+      description: ATK +12
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - mk_ta4
+      - mk_ta5
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: mk_ta7
+      nodeName: Iron Discipline
+      description: DEF +15
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - mk_ta6
+      statBonuses:
+      - stat: 1
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: mk_ta8
+      nodeName: Siege Mode
+      description: Overwatch +40% damage
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - mk_ta7
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: overwatch
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: mk_ta9
+      nodeName: War Machine
+      description: ATK +25, DEF +20
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - mk_ta8
+      statBonuses:
+      - stat: 0
+        value: 25
+      - stat: 1
+        value: 20
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

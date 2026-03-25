@@ -1,0 +1,442 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: ReaperSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: reaper
+  className: Reaper
+  branches:
+  - branchId: reaper_execution
+    branchName: Execution
+    branchDescription: Lethal strikes, execute thresholds, devastating crits.
+    nodes:
+    - nodeId: rp_ex1
+      nodeName: Soul Rend
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: rp_ex2
+      nodeName: Harvest
+      description: Crit Damage +10%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - rp_ex1
+      statBonuses:
+      - stat: 5
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: rp_ex3
+      nodeName: Death Mark
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - rp_ex2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: rp_ex4
+      nodeName: Execute
+      description: Execute +instant kill below 15%
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - rp_ex3
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: execute
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: rp_ex5
+      nodeName: Lethal Edge
+      description: Crit Damage +15%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - rp_ex3
+      statBonuses:
+      - stat: 5
+        value: 0.15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: rp_ex6
+      nodeName: Grim Strike
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - rp_ex4
+      - rp_ex5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: rp_ex7
+      nodeName: Reap
+      description: Crit Damage +20%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - rp_ex6
+      statBonuses:
+      - stat: 5
+        value: 0.2
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: rp_ex8
+      nodeName: Final Judgment
+      description: Reap +AoE execute
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - rp_ex7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: reap
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: rp_ex9
+      nodeName: Death Incarnate
+      description: ATK +35, Crit Damage +25%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - rp_ex8
+      statBonuses:
+      - stat: 0
+        value: 35
+      - stat: 5
+        value: 0.25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: reaper_reaving
+    branchName: Reaving
+    branchDescription: Scythe speed, spectral dashes, relentless assault.
+    nodes:
+    - nodeId: rp_rv1
+      nodeName: Swift Scythe
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: rp_rv2
+      nodeName: Whirlwind
+      description: SPD +0.03
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - rp_rv1
+      statBonuses:
+      - stat: 3
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: rp_rv3
+      nodeName: Spectral Rush
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - rp_rv2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: rp_rv4
+      nodeName: Soul Rush
+      description: Soul Rush +teleport strike
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - rp_rv3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: soul_rush
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: rp_rv5
+      nodeName: Shadow Dash
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - rp_rv3
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: rp_rv6
+      nodeName: Death Dance
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - rp_rv4
+      - rp_rv5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: rp_rv7
+      nodeName: Soul Blitz
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - rp_rv6
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: rp_rv8
+      nodeName: Reaving Storm
+      description: Reave AoE scythe storm
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - rp_rv7
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: reave
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: rp_rv9
+      nodeName: Reaving Lord
+      description: ATK +30, SPD +0.08
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - rp_rv8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 3
+        value: 0.08
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: reaper_undying
+    branchName: Undying
+    branchDescription: Dark resilience, soul armor, life drain sustain.
+    nodes:
+    - nodeId: rp_ud1
+      nodeName: Grim Resolve
+      description: HP +50
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 2
+        value: 50
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: rp_ud2
+      nodeName: Death's Touch
+      description: Life Steal +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - rp_ud1
+      statBonuses:
+      - stat: 7
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: rp_ud3
+      nodeName: Life Drain
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - rp_ud2
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: rp_ud4
+      nodeName: Undying Will
+      description: Drain +revive at 1 HP once
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - rp_ud3
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: drain
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: rp_ud5
+      nodeName: Soul Armor
+      description: Life Steal +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - rp_ud3
+      statBonuses:
+      - stat: 7
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: rp_ud6
+      nodeName: Dark Resilience
+      description: HP +100
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - rp_ud4
+      - rp_ud5
+      statBonuses:
+      - stat: 2
+        value: 100
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: rp_ud7
+      nodeName: Unholy Vitality
+      description: Life Steal +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - rp_ud6
+      statBonuses:
+      - stat: 7
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: rp_ud8
+      nodeName: Death's Embrace
+      description: Undying +soul shield on kill
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - rp_ud7
+      statBonuses:
+      - stat: 2
+        value: 100
+      - stat: 7
+        value: 0.03
+      modifiedAbilityId: undying
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: rp_ud9
+      nodeName: Immortal Reaper
+      description: HP +250, Life Steal +8%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - rp_ud8
+      statBonuses:
+      - stat: 2
+        value: 250
+      - stat: 7
+        value: 0.08
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

@@ -1,0 +1,444 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: DefenderSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: defender
+  className: Defender
+  branches:
+  - branchId: defender_fortress
+    branchName: Fortress
+    branchDescription: Maximum HP and defense, immovable bulwark.
+    nodes:
+    - nodeId: df_ft1
+      nodeName: Stone Skin
+      description: HP +50
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 2
+        value: 50
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: df_ft2
+      nodeName: Iron Constitution
+      description: DEF +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - df_ft1
+      statBonuses:
+      - stat: 1
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: df_ft3
+      nodeName: Stalwart
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - df_ft2
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: df_ft4
+      nodeName: Impenetrable Wall
+      description: Shield Wall +30% block
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - df_ft3
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: shield_wall
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: df_ft5
+      nodeName: Endurance
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - df_ft3
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: df_ft6
+      nodeName: Unbreakable
+      description: HP +120
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - df_ft4
+      - df_ft5
+      statBonuses:
+      - stat: 2
+        value: 120
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: df_ft7
+      nodeName: Titan's Resolve
+      description: DEF +15
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - df_ft6
+      statBonuses:
+      - stat: 1
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: df_ft8
+      nodeName: Absolute Defense
+      description: Fortify +50% duration
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - df_ft7
+      statBonuses:
+      - stat: 2
+        value: 150
+      - stat: 1
+        value: 10
+      modifiedAbilityId: fortify
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: df_ft9
+      nodeName: Living Bastion
+      description: HP +300, DEF +25
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - df_ft8
+      statBonuses:
+      - stat: 2
+        value: 300
+      - stat: 1
+        value: 25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: defender_retribution
+    branchName: Retribution
+    branchDescription: Counter-attacks, reflected damage, offensive defense.
+    nodes:
+    - nodeId: df_rt1
+      nodeName: Thorned Armor
+      description: DEF +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: df_rt2
+      nodeName: Retaliate
+      description: ATK +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - df_rt1
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: df_rt3
+      nodeName: Counter Force
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - df_rt2
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: df_rt4
+      nodeName: Vengeance Strike
+      description: Counter-attack +30% damage
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - df_rt3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: counter_attack
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: df_rt5
+      nodeName: Punishing Blow
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - df_rt3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: df_rt6
+      nodeName: Righteous Fury
+      description: DEF +12
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - df_rt4
+      - df_rt5
+      statBonuses:
+      - stat: 1
+        value: 12
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: df_rt7
+      nodeName: Wrathful Guard
+      description: ATK +15
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - df_rt6
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: df_rt8
+      nodeName: Retributive Blast
+      description: Retribution AoE reflect
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - df_rt7
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: retribution
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: df_rt9
+      nodeName: Divine Retribution
+      description: DEF +20, ATK +25
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - df_rt8
+      statBonuses:
+      - stat: 1
+        value: 20
+      - stat: 0
+        value: 25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: defender_sentinel
+    branchName: Sentinel
+    branchDescription: Protective auras, party-wide shields, vigilance.
+    nodes:
+    - nodeId: df_sn1
+      nodeName: Watchful Eye
+      description: DEF +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: df_sn2
+      nodeName: Thick Hide
+      description: HP +60
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - df_sn1
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: df_sn3
+      nodeName: Vigilant
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - df_sn2
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: df_sn4
+      nodeName: Guardian Aura
+      description: Guard Stance +party DEF
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - df_sn3
+      statBonuses:
+      - stat: 1
+        value: 8
+      modifiedAbilityId: guard_stance
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: df_sn5
+      nodeName: Vital Guard
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - df_sn3
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: df_sn6
+      nodeName: Shield Bearer
+      description: DEF +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - df_sn4
+      - df_sn5
+      statBonuses:
+      - stat: 1
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: df_sn7
+      nodeName: Protector's Oath
+      description: HP +120
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - df_sn6
+      statBonuses:
+      - stat: 2
+        value: 120
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: df_sn8
+      nodeName: Sentinel's Watch
+      description: Sentinel Shield +party HP
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - df_sn7
+      statBonuses:
+      - stat: 1
+        value: 12
+      - stat: 2
+        value: 100
+      modifiedAbilityId: sentinel_shield
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: df_sn9
+      nodeName: Eternal Sentinel
+      description: DEF +25, HP +250
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - df_sn8
+      statBonuses:
+      - stat: 1
+        value: 25
+      - stat: 2
+        value: 250
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

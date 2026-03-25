@@ -22,6 +22,9 @@ namespace Ascendant.Progression
         const float RespecGoldBase = 500f;
         readonly Dictionary<int, int> _respecCounts = new();
 
+        // O(1) lookup cache: classId -> SkillTreeData
+        readonly Dictionary<string, SkillTreeData> _treeCache = new();
+
         void Awake()
         {
             if (Instance != null && Instance != this)
@@ -30,6 +33,18 @@ namespace Ascendant.Progression
                 return;
             }
             Instance = this;
+            BuildTreeCache();
+        }
+
+        void BuildTreeCache()
+        {
+            _treeCache.Clear();
+            if (_skillTrees == null) return;
+            for (int i = 0; i < _skillTrees.Length; i++)
+            {
+                if (_skillTrees[i] != null && !string.IsNullOrEmpty(_skillTrees[i].classId))
+                    _treeCache[_skillTrees[i].classId] = _skillTrees[i];
+            }
         }
 
         void OnEnable()
@@ -59,11 +74,8 @@ namespace Ascendant.Progression
 
         public SkillTreeData GetSkillTree(string classId)
         {
-            if (_skillTrees == null) return null;
-            for (int i = 0; i < _skillTrees.Length; i++)
-                if (_skillTrees[i] != null && _skillTrees[i].classId == classId)
-                    return _skillTrees[i];
-            return null;
+            if (string.IsNullOrEmpty(classId)) return null;
+            return _treeCache.TryGetValue(classId, out var tree) ? tree : null;
         }
 
         public int GetAvailablePoints(int heroSlot)

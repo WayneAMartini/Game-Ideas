@@ -1,0 +1,444 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: ShamanSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: shaman
+  className: Shaman
+  branches:
+  - branchId: shaman_storm
+    branchName: Storm
+    branchDescription: Lightning damage, chain effects, devastating crits.
+    nodes:
+    - nodeId: sm_st1
+      nodeName: Lightning Bolt
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: sm_st2
+      nodeName: Thunder Strike
+      description: Crit Damage +10%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - sm_st1
+      statBonuses:
+      - stat: 5
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: sm_st3
+      nodeName: Charged Air
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - sm_st2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: sm_st4
+      nodeName: Chain Lightning
+      description: Lightning chains to 3 targets
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - sm_st3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: lightning
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: sm_st5
+      nodeName: Storm Surge
+      description: Crit Damage +15%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - sm_st3
+      statBonuses:
+      - stat: 5
+        value: 0.15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: sm_st6
+      nodeName: Tempest
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - sm_st4
+      - sm_st5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: sm_st7
+      nodeName: Thunder God
+      description: Crit Damage +20%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - sm_st6
+      statBonuses:
+      - stat: 5
+        value: 0.2
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: sm_st8
+      nodeName: Hurricane
+      description: Thunder AoE +50% radius
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - sm_st7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: thunder
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: sm_st9
+      nodeName: Storm Lord
+      description: ATK +30, Crit Damage +25%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - sm_st8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 5
+        value: 0.25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: shaman_spirit
+    branchName: Spirit
+    branchDescription: Ancestral power, spirit totems, HP and attack.
+    nodes:
+    - nodeId: sm_sp1
+      nodeName: Spirit Link
+      description: HP +50
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 2
+        value: 50
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: sm_sp2
+      nodeName: Ancestral Wisdom
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - sm_sp1
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: sm_sp3
+      nodeName: Totem Power
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - sm_sp2
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: sm_sp4
+      nodeName: Spirit Walk
+      description: Spirit Totem +25% range
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - sm_sp3
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: spirit_totem
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: sm_sp5
+      nodeName: Ethereal Blessing
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - sm_sp3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: sm_sp6
+      nodeName: Soul Bond
+      description: HP +100
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - sm_sp4
+      - sm_sp5
+      statBonuses:
+      - stat: 2
+        value: 100
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: sm_sp7
+      nodeName: Ancestral Fury
+      description: ATK +15
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - sm_sp6
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: sm_sp8
+      nodeName: Spirit Rage
+      description: Spirit Blast +40% damage
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - sm_sp7
+      statBonuses:
+      - stat: 2
+        value: 100
+      - stat: 0
+        value: 12
+      modifiedAbilityId: spirit_blast
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: sm_sp9
+      nodeName: Spirit King
+      description: HP +250, ATK +25
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - sm_sp8
+      statBonuses:
+      - stat: 2
+        value: 250
+      - stat: 0
+        value: 25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: shaman_earth
+    branchName: Earth
+    branchDescription: Earthen defenses, stone shields, resilience.
+    nodes:
+    - nodeId: sm_ea1
+      nodeName: Stone Shield
+      description: DEF +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: sm_ea2
+      nodeName: Earthen Grip
+      description: HP +60
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - sm_ea1
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: sm_ea3
+      nodeName: Rock Solid
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - sm_ea2
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: sm_ea4
+      nodeName: Earthquake
+      description: Earth Shield +30% absorb
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - sm_ea3
+      statBonuses:
+      - stat: 1
+        value: 8
+      modifiedAbilityId: earth_shield
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: sm_ea5
+      nodeName: Terra Firma
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - sm_ea3
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: sm_ea6
+      nodeName: Mountain's Might
+      description: DEF +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - sm_ea4
+      - sm_ea5
+      statBonuses:
+      - stat: 1
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: sm_ea7
+      nodeName: Stone Golem
+      description: HP +120
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - sm_ea6
+      statBonuses:
+      - stat: 2
+        value: 120
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: sm_ea8
+      nodeName: Tectonic Shift
+      description: Quake AoE knockback
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - sm_ea7
+      statBonuses:
+      - stat: 1
+        value: 12
+      - stat: 2
+        value: 100
+      modifiedAbilityId: quake
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: sm_ea9
+      nodeName: Earth Titan
+      description: DEF +25, HP +250
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - sm_ea8
+      statBonuses:
+      - stat: 1
+        value: 25
+      - stat: 2
+        value: 250
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

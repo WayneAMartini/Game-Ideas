@@ -1,0 +1,440 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: GunslingerSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: gunslinger
+  className: Gunslinger
+  branches:
+  - branchId: gunslinger_desperado
+    branchName: Desperado
+    branchDescription: Quick draw, lethal crits, last-stand power.
+    nodes:
+    - nodeId: gs_dp1
+      nodeName: Quick Draw
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: gs_dp2
+      nodeName: Fan the Hammer
+      description: Crit Damage +10%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - gs_dp1
+      statBonuses:
+      - stat: 5
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: gs_dp3
+      nodeName: Dead Aim
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - gs_dp2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: gs_dp4
+      nodeName: Deadeye Shot
+      description: Deadeye +guaranteed crit
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - gs_dp3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: deadeye
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: gs_dp5
+      nodeName: Lethal Caliber
+      description: Crit Damage +15%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - gs_dp3
+      statBonuses:
+      - stat: 5
+        value: 0.15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: gs_dp6
+      nodeName: Marksman
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - gs_dp4
+      - gs_dp5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: gs_dp7
+      nodeName: Ricochet
+      description: Crit Damage +20%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - gs_dp6
+      statBonuses:
+      - stat: 5
+        value: 0.2
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: gs_dp8
+      nodeName: Last Stand
+      description: Last Stand +100% ATK below 25% HP
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - gs_dp7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: last_stand
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: gs_dp9
+      nodeName: Legendary Gunslinger
+      description: ATK +35, Crit Damage +25%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - gs_dp8
+      statBonuses:
+      - stat: 0
+        value: 35
+      - stat: 5
+        value: 0.25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: gunslinger_trickshot
+    branchName: Trickshot
+    branchDescription: Rapid reload, speed shooting, showmanship.
+    nodes:
+    - nodeId: gs_ts1
+      nodeName: Hip Shot
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: gs_ts2
+      nodeName: Rapid Reload
+      description: SPD +0.03
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - gs_ts1
+      statBonuses:
+      - stat: 3
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: gs_ts3
+      nodeName: Showoff
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - gs_ts2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: gs_ts4
+      nodeName: Trick Volley
+      description: Trick Shot +ricochet
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - gs_ts3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: trick_shot
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: gs_ts5
+      nodeName: Deft Hands
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - gs_ts3
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: gs_ts6
+      nodeName: Bullet Time
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - gs_ts4
+      - gs_ts5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: gs_ts7
+      nodeName: Silver Bullet
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - gs_ts6
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: gs_ts8
+      nodeName: Barrage
+      description: Rapid Fire +50% speed
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - gs_ts7
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: rapid_fire
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: gs_ts9
+      nodeName: Master Trickshot
+      description: ATK +25, SPD +0.08
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - gs_ts8
+      statBonuses:
+      - stat: 0
+        value: 25
+      - stat: 3
+        value: 0.08
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: gunslinger_demolition
+    branchName: Demolition
+    branchDescription: Explosives, grenades, critical detonations.
+    nodes:
+    - nodeId: gs_dm1
+      nodeName: Explosive Round
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: gs_dm2
+      nodeName: Grenade
+      description: Crit Rate +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - gs_dm1
+      statBonuses:
+      - stat: 4
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: gs_dm3
+      nodeName: Blast Zone
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - gs_dm2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: gs_dm4
+      nodeName: Dynamite
+      description: Grenade +50% AoE
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - gs_dm3
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: grenade
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: gs_dm5
+      nodeName: Shrapnel
+      description: Crit Rate +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - gs_dm3
+      statBonuses:
+      - stat: 4
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: gs_dm6
+      nodeName: Demolition Charge
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - gs_dm4
+      - gs_dm5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: gs_dm7
+      nodeName: Heavy Ordnance
+      description: Crit Rate +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - gs_dm6
+      statBonuses:
+      - stat: 4
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: gs_dm8
+      nodeName: Carpet Bomb
+      description: Explosive +chain detonation
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - gs_dm7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: explosive
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: gs_dm9
+      nodeName: Demolition Expert
+      description: ATK +30, Crit Rate +10%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - gs_dm8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 4
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

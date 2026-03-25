@@ -1,0 +1,442 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: BerserkerSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: berserker
+  className: Berserker
+  branches:
+  - branchId: berserker_fury
+    branchName: Fury
+    branchDescription: Critical strikes, rage generation, explosive damage.
+    nodes:
+    - nodeId: bk_fu1
+      nodeName: Rage Strike
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: bk_fu2
+      nodeName: Bloodthirst
+      description: Crit Rate +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - bk_fu1
+      statBonuses:
+      - stat: 4
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: bk_fu3
+      nodeName: Savage Blow
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - bk_fu2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: bk_fu4
+      nodeName: Frenzy
+      description: Rage +30% duration
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - bk_fu3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: rage
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: bk_fu5
+      nodeName: Reckless Abandon
+      description: Crit Rate +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - bk_fu3
+      statBonuses:
+      - stat: 4
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: bk_fu6
+      nodeName: Unstoppable Force
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - bk_fu4
+      - bk_fu5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: bk_fu7
+      nodeName: Primal Fury
+      description: Crit Rate +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - bk_fu6
+      statBonuses:
+      - stat: 4
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: bk_fu8
+      nodeName: Berserk Rampage
+      description: Berserk +50% crit damage
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - bk_fu7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: berserk
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: bk_fu9
+      nodeName: Avatar of Fury
+      description: ATK +30, Crit Rate +10%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - bk_fu8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 4
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: berserker_bloodlust
+    branchName: Bloodlust
+    branchDescription: Life steal, sustain through damage, vampiric fury.
+    nodes:
+    - nodeId: bk_bl1
+      nodeName: Crimson Strike
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: bk_bl2
+      nodeName: Blood Scent
+      description: Life Steal +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - bk_bl1
+      statBonuses:
+      - stat: 7
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: bk_bl3
+      nodeName: Life Tap
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - bk_bl2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: bk_bl4
+      nodeName: Sanguine Slash
+      description: Blood Strike heals on hit
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - bk_bl3
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: blood_strike
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: bk_bl5
+      nodeName: Vampiric Fury
+      description: Life Steal +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - bk_bl3
+      statBonuses:
+      - stat: 7
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: bk_bl6
+      nodeName: Blood Frenzy
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - bk_bl4
+      - bk_bl5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: bk_bl7
+      nodeName: Exsanguinate
+      description: Life Steal +5%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - bk_bl6
+      statBonuses:
+      - stat: 7
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: bk_bl8
+      nodeName: Bloodbath
+      description: Drain Life AoE heal
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - bk_bl7
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: drain_life
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: bk_bl9
+      nodeName: Blood God
+      description: ATK +30, Life Steal +8%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - bk_bl8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 7
+        value: 0.08
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: berserker_titan
+    branchName: Titan
+    branchDescription: Massive HP pool, damage reduction, unstoppable colossus.
+    nodes:
+    - nodeId: bk_ti1
+      nodeName: Thick Skull
+      description: HP +50
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 2
+        value: 50
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: bk_ti2
+      nodeName: Enduring Rage
+      description: DEF +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - bk_ti1
+      statBonuses:
+      - stat: 1
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: bk_ti3
+      nodeName: Juggernaut
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - bk_ti2
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: bk_ti4
+      nodeName: War Stomp
+      description: War Cry stun duration +1s
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - bk_ti3
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: war_cry
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: bk_ti5
+      nodeName: Iron Will
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - bk_ti3
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: bk_ti6
+      nodeName: Colossus
+      description: HP +120
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - bk_ti4
+      - bk_ti5
+      statBonuses:
+      - stat: 2
+        value: 120
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: bk_ti7
+      nodeName: Mountainous
+      description: DEF +15
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - bk_ti6
+      statBonuses:
+      - stat: 1
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: bk_ti8
+      nodeName: Titan's Grip
+      description: Titan Slam +50% AoE
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - bk_ti7
+      statBonuses:
+      - stat: 2
+        value: 150
+      - stat: 1
+        value: 10
+      modifiedAbilityId: titan_slam
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: bk_ti9
+      nodeName: Titan Lord
+      description: HP +300, DEF +25
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - bk_ti8
+      statBonuses:
+      - stat: 2
+        value: 300
+      - stat: 1
+        value: 25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

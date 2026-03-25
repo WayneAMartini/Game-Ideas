@@ -1,0 +1,442 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: AlchemistSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: alchemist
+  className: Alchemist
+  branches:
+  - branchId: alchemist_pyromancy
+    branchName: Pyromancy
+    branchDescription: Fire flasks, explosive damage, burning crits.
+    nodes:
+    - nodeId: al_py1
+      nodeName: Fire Flask
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: al_py2
+      nodeName: Volatile Mix
+      description: Crit Damage +10%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - al_py1
+      statBonuses:
+      - stat: 5
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: al_py3
+      nodeName: Ignite
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - al_py2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: al_py4
+      nodeName: Firebomb
+      description: Firebomb +30% AoE
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - al_py3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: firebomb
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: al_py5
+      nodeName: Chemical Burn
+      description: Crit Damage +15%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - al_py3
+      statBonuses:
+      - stat: 5
+        value: 0.15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: al_py6
+      nodeName: Napalm
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - al_py4
+      - al_py5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: al_py7
+      nodeName: Inferno Brew
+      description: Crit Damage +20%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - al_py6
+      statBonuses:
+      - stat: 5
+        value: 0.2
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: al_py8
+      nodeName: Pyroclasm
+      description: Inferno +50% burn duration
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - al_py7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: inferno
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: al_py9
+      nodeName: Grand Pyromancer
+      description: ATK +30, Crit Damage +25%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - al_py8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 5
+        value: 0.25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: alchemist_restoration
+    branchName: Restoration
+    branchDescription: Healing potions, protective elixirs, fortification.
+    nodes:
+    - nodeId: al_rs1
+      nodeName: Healing Potion
+      description: HP +50
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 2
+        value: 50
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: al_rs2
+      nodeName: Elixir of Life
+      description: DEF +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - al_rs1
+      statBonuses:
+      - stat: 1
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: al_rs3
+      nodeName: Tonic of Iron
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - al_rs2
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: al_rs4
+      nodeName: Regeneration Serum
+      description: Potion +25% heal
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - al_rs3
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: potion
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: al_rs5
+      nodeName: Antidote
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - al_rs3
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: al_rs6
+      nodeName: Fortification Brew
+      description: HP +100
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - al_rs4
+      - al_rs5
+      statBonuses:
+      - stat: 2
+        value: 100
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: al_rs7
+      nodeName: Shield Elixir
+      description: DEF +15
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - al_rs6
+      statBonuses:
+      - stat: 1
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: al_rs8
+      nodeName: Philosopher's Stone
+      description: Elixir +transmute shield
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - al_rs7
+      statBonuses:
+      - stat: 2
+        value: 120
+      - stat: 1
+        value: 10
+      modifiedAbilityId: elixir
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: al_rs9
+      nodeName: Master Alchemist
+      description: HP +250, DEF +25
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - al_rs8
+      statBonuses:
+      - stat: 2
+        value: 250
+      - stat: 1
+        value: 25
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: alchemist_mutation
+    branchName: Mutation
+    branchDescription: Mutagens, adaptive formulas, speed enhancements.
+    nodes:
+    - nodeId: al_mu1
+      nodeName: Mutagen
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: al_mu2
+      nodeName: Adaptive Formula
+      description: SPD +0.03
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - al_mu1
+      statBonuses:
+      - stat: 3
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: al_mu3
+      nodeName: Haste Tincture
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - al_mu2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: al_mu4
+      nodeName: Transformation
+      description: Mutagen +25% all stats 5s
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - al_mu3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: mutagen
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: al_mu5
+      nodeName: Quick Brew
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - al_mu3
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: al_mu6
+      nodeName: Catalyst
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - al_mu4
+      - al_mu5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: al_mu7
+      nodeName: Unstable Mutagen
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - al_mu6
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: al_mu8
+      nodeName: Metamorphosis
+      description: Catalyst +permanent buff
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - al_mu7
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: catalyst
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: al_mu9
+      nodeName: Evolved Alchemist
+      description: ATK +25, SPD +0.08
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - al_mu8
+      statBonuses:
+      - stat: 0
+        value: 25
+      - stat: 3
+        value: 0.08
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

@@ -1,0 +1,444 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: DruidSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: druid
+  className: Druid
+  branches:
+  - branchId: druid_restoration
+    branchName: Restoration
+    branchDescription: Healing power, nature magic, life regeneration.
+    nodes:
+    - nodeId: dr_rs1
+      nodeName: Nature's Touch
+      description: HP +50
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 2
+        value: 50
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: dr_rs2
+      nodeName: Regrowth
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - dr_rs1
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: dr_rs3
+      nodeName: Healing Rain
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - dr_rs2
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: dr_rs4
+      nodeName: Rejuvenating Bloom
+      description: Heal +25% potency
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - dr_rs3
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: heal
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: dr_rs5
+      nodeName: Vital Sap
+      description: ATK +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - dr_rs3
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: dr_rs6
+      nodeName: Verdant Life
+      description: HP +100
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - dr_rs4
+      - dr_rs5
+      statBonuses:
+      - stat: 2
+        value: 100
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: dr_rs7
+      nodeName: Nature's Blessing
+      description: ATK +12
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - dr_rs6
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: dr_rs8
+      nodeName: Circle of Life
+      description: Rejuvenate party HoT
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - dr_rs7
+      statBonuses:
+      - stat: 2
+        value: 120
+      - stat: 0
+        value: 10
+      modifiedAbilityId: rejuvenate
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: dr_rs9
+      nodeName: World Tree
+      description: HP +250, ATK +20
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - dr_rs8
+      statBonuses:
+      - stat: 2
+        value: 250
+      - stat: 0
+        value: 20
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: druid_feral
+    branchName: Feral
+    branchDescription: Shapeshifting aggression, attack speed, predatory strikes.
+    nodes:
+    - nodeId: dr_fe1
+      nodeName: Claw Strike
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: dr_fe2
+      nodeName: Wild Instinct
+      description: SPD +0.03
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - dr_fe1
+      statBonuses:
+      - stat: 3
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: dr_fe3
+      nodeName: Predator's Mark
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - dr_fe2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: dr_fe4
+      nodeName: Savage Pounce
+      description: Claw Attack +30% damage
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - dr_fe3
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: claw_attack
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: dr_fe5
+      nodeName: Fleet Footed
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - dr_fe3
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: dr_fe6
+      nodeName: Pack Hunter
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - dr_fe4
+      - dr_fe5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: dr_fe7
+      nodeName: Razor Fangs
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - dr_fe6
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: dr_fe8
+      nodeName: Primal Assault
+      description: Feral Charge AoE
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - dr_fe7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: feral_charge
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: dr_fe9
+      nodeName: Alpha Predator
+      description: ATK +30, SPD +0.08
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - dr_fe8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 3
+        value: 0.08
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: druid_guardian
+    branchName: Guardian
+    branchDescription: Nature's armor, root barriers, HP and defense.
+    nodes:
+    - nodeId: dr_gu1
+      nodeName: Bark Skin
+      description: DEF +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: dr_gu2
+      nodeName: Nature's Armor
+      description: HP +60
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - dr_gu1
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: dr_gu3
+      nodeName: Root Shield
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - dr_gu2
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: dr_gu4
+      nodeName: Entangling Roots
+      description: Shield of Thorns +25% reflect
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - dr_gu3
+      statBonuses:
+      - stat: 1
+        value: 8
+      modifiedAbilityId: shield_of_thorns
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: dr_gu5
+      nodeName: Deep Roots
+      description: HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - dr_gu3
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: dr_gu6
+      nodeName: Ancient Oak
+      description: DEF +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - dr_gu4
+      - dr_gu5
+      statBonuses:
+      - stat: 1
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: dr_gu7
+      nodeName: Living Fortress
+      description: HP +120
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - dr_gu6
+      statBonuses:
+      - stat: 2
+        value: 120
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: dr_gu8
+      nodeName: Guardian Spirit
+      description: Iron Bark +50% duration
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - dr_gu7
+      statBonuses:
+      - stat: 1
+        value: 12
+      - stat: 2
+        value: 100
+      modifiedAbilityId: iron_bark
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: dr_gu9
+      nodeName: Nature's Warden
+      description: DEF +25, HP +250
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - dr_gu8
+      statBonuses:
+      - stat: 1
+        value: 25
+      - stat: 2
+        value: 250
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

@@ -31,6 +31,7 @@ namespace Ascendant.UI
         [SerializeField] TextMeshProUGUI _pointsText;
         [SerializeField] Button _respecButton;
         [SerializeField] TextMeshProUGUI _respecCostText;
+        [SerializeField] Button _closeButton;
 
         [Header("Pinch Zoom")]
         [SerializeField] float _minZoom = 0.5f;
@@ -46,6 +47,13 @@ namespace Ascendant.UI
         static readonly Color AvailableColor = new(0.3f, 0.5f, 1f);
         static readonly Color PurchasedColor = new(1f, 0.85f, 0f);
         static readonly Color CapstoneColor = new(1f, 0.5f, 0f);
+
+        void Start()
+        {
+            if (_investButton != null) _investButton.onClick.AddListener(OnInvestClicked);
+            if (_respecButton != null) _respecButton.onClick.AddListener(OnRespecClicked);
+            if (_closeButton != null) _closeButton.onClick.AddListener(Close);
+        }
 
         void OnEnable()
         {

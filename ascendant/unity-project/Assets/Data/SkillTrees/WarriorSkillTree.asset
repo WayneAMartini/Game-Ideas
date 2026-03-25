@@ -1,0 +1,444 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: WarriorSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: warrior
+  className: Warrior
+  branches:
+  - branchId: warrior_blade
+    branchName: Blade
+    branchDescription: Raw damage, cleave radius, critical strike chance.
+    nodes:
+    - nodeId: wb1
+      nodeName: Sharpened Edge
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: wb2
+      nodeName: Keen Strikes
+      description: Crit Rate +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - wb1
+      statBonuses:
+      - stat: 4
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: wb3
+      nodeName: Blade Mastery
+      description: ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - wb2
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: wb4
+      nodeName: Wide Cleave
+      description: Cleaving Strike +25% radius
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - wb3
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: cleaving_strike
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: wb5
+      nodeName: Ruthless Strikes
+      description: Crit Damage +15%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - wb3
+      statBonuses:
+      - stat: 5
+        value: 0.15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: wb6
+      nodeName: Lethal Precision
+      description: Crit Rate +5%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - wb4
+      - wb5
+      statBonuses:
+      - stat: 4
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: wb7
+      nodeName: Devastating Blow
+      description: ATK +15
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - wb6
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: wb8
+      nodeName: Whirlwind
+      description: ATK +20, unlock Whirlwind passive
+      nodeType: 0
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - wb7
+      statBonuses:
+      - stat: 0
+        value: 20
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: wb9
+      nodeName: Sword Saint
+      description: ATK +30, Crit Rate +10%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - wb8
+      statBonuses:
+      - stat: 0
+        value: 30
+      - stat: 4
+        value: 0.1
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: warrior_shield
+    branchName: Shield
+    branchDescription: Defense, counterattack chance, taunt duration.
+    nodes:
+    - nodeId: ws1
+      nodeName: Iron Skin
+      description: DEF +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: ws2
+      nodeName: Bulwark
+      description: HP +50
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - ws1
+      statBonuses:
+      - stat: 2
+        value: 50
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: ws3
+      nodeName: Shield Wall
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - ws2
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: ws4
+      nodeName: Counter Strike
+      description: Chance to counter-attack on block
+      nodeType: 1
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - ws3
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: ws5
+      nodeName: Fortified
+      description: HP +100
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - ws3
+      statBonuses:
+      - stat: 2
+        value: 100
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: ws6
+      nodeName: Unyielding
+      description: DEF +15, Dodge +3%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - ws4
+      - ws5
+      statBonuses:
+      - stat: 1
+        value: 15
+      - stat: 6
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: ws7
+      nodeName: Taunt Mastery
+      description: War Cry taunt duration +3s
+      nodeType: 1
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - ws6
+      statBonuses:
+      - stat: 1
+        value: 8
+      modifiedAbilityId: war_cry
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: ws8
+      nodeName: Living Fortress
+      description: HP +200, DEF +10
+      nodeType: 0
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - ws7
+      statBonuses:
+      - stat: 2
+        value: 200
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: ws9
+      nodeName: Immortal Guard
+      description: DEF +25, Life Steal +5%
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - ws8
+      statBonuses:
+      - stat: 1
+        value: 25
+      - stat: 7
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: warrior_commander
+    branchName: Commander
+    branchDescription: Party-wide buffs, War Cry enhancements, leadership auras.
+    nodes:
+    - nodeId: wc1
+      nodeName: Inspiring Presence
+      description: Party ATK +2%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 3
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: wc2
+      nodeName: Rally Cry
+      description: War Cry ATK bonus +5%
+      nodeType: 1
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - wc1
+      statBonuses:
+      - stat: 0
+        value: 3
+      modifiedAbilityId: war_cry
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: wc3
+      nodeName: Leadership
+      description: Party DEF +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - wc2
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: wc4
+      nodeName: Battle Standard
+      description: Party HP +50
+      nodeType: 0
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - wc3
+      statBonuses:
+      - stat: 2
+        value: 50
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: wc5
+      nodeName: Tactical Mind
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - wc3
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: wc6
+      nodeName: Bolstering Shout
+      description: War Cry also heals party 5% HP
+      nodeType: 1
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - wc4
+      - wc5
+      statBonuses:
+      - stat: 2
+        value: 75
+      modifiedAbilityId: war_cry
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: wc7
+      nodeName: Commanding Aura
+      description: Party ATK +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - wc6
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: wc8
+      nodeName: Undying Will
+      description: Party Dodge +3%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - wc7
+      statBonuses:
+      - stat: 6
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: wc9
+      nodeName: Warlord
+      description: ATK +20, DEF +20, party-wide stat aura
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - wc8
+      statBonuses:
+      - stat: 0
+        value: 20
+      - stat: 1
+        value: 20
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

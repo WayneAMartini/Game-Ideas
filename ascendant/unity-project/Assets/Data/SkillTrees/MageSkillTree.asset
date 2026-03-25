@@ -1,0 +1,440 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: MageSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: mage
+  className: Mage
+  branches:
+  - branchId: mage_frost
+    branchName: Frost
+    branchDescription: Freeze duration, shatter damage, AoE radius.
+    nodes:
+    - nodeId: mf1
+      nodeName: Chilling Touch
+      description: ATK +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: mf2
+      nodeName: Frost Bite
+      description: ATK +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - mf1
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: mf3
+      nodeName: Deep Freeze
+      description: Frost Nova duration +1s
+      nodeType: 1
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - mf2
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: frost_nova
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: mf4
+      nodeName: Shatter
+      description: Bonus damage to frozen targets
+      nodeType: 0
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - mf3
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: mf5
+      nodeName: Ice Barrier
+      description: DEF +10
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - mf3
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: mf6
+      nodeName: Glacial Mastery
+      description: ATK +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - mf4
+      - mf5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: mf7
+      nodeName: Permafrost
+      description: DEF +12, HP +80
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - mf6
+      statBonuses:
+      - stat: 1
+        value: 12
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: mf8
+      nodeName: Avalanche
+      description: Blizzard damage +50%
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - mf7
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: blizzard
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: mf9
+      nodeName: Absolute Mastery
+      description: ATK +30, freeze all on Absolute Zero
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - mf8
+      statBonuses:
+      - stat: 0
+        value: 30
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: mage_arcane
+    branchName: Arcane
+    branchDescription: Raw spell damage, missile count, mana efficiency.
+    nodes:
+    - nodeId: ma1
+      nodeName: Arcane Power
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: ma2
+      nodeName: Focused Mind
+      description: ATK +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - ma1
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: ma3
+      nodeName: Split Bolt
+      description: Extra missile at high Momentum
+      nodeType: 1
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - ma2
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: ma4
+      nodeName: Arcane Infusion
+      description: ATK +12
+      nodeType: 0
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - ma3
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: ma5
+      nodeName: Spell Haste
+      description: SPD +0.05
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - ma3
+      statBonuses:
+      - stat: 3
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: ma6
+      nodeName: Overcharge
+      description: Crit Rate +5%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - ma4
+      - ma5
+      statBonuses:
+      - stat: 4
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: ma7
+      nodeName: Arcane Barrage
+      description: ATK +18
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - ma6
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: ma8
+      nodeName: Spell Mastery
+      description: Crit Damage +20%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - ma7
+      statBonuses:
+      - stat: 5
+        value: 0.2
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: ma9
+      nodeName: Archmage
+      description: ATK +35, all spells +25% damage
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - ma8
+      statBonuses:
+      - stat: 0
+        value: 35
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: mage_ether
+    branchName: Ether
+    branchDescription: Mana regeneration, party magic buff, spell resistance.
+    nodes:
+    - nodeId: me1
+      nodeName: Mana Well
+      description: HP +30
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 2
+        value: 30
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: me2
+      nodeName: Arcane Shield
+      description: DEF +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - me1
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: me3
+      nodeName: Ether Flow
+      description: SPD +0.03
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - me2
+      statBonuses:
+      - stat: 3
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: me4
+      nodeName: Spell Resistance
+      description: DEF +10
+      nodeType: 0
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - me3
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: me5
+      nodeName: Mana Surge Boost
+      description: Mana Surge threshold -10%
+      nodeType: 1
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - me3
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: me6
+      nodeName: Ethereal Ward
+      description: HP +100, DEF +8
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - me4
+      - me5
+      statBonuses:
+      - stat: 2
+        value: 100
+      - stat: 1
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: me7
+      nodeName: Mana Font
+      description: Party magic damage aura
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - me6
+      statBonuses:
+      - stat: 0
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: me8
+      nodeName: Astral Form
+      description: Dodge +5%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - me7
+      statBonuses:
+      - stat: 6
+        value: 0.05
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: me9
+      nodeName: Ether Lord
+      description: ATK +20, DEF +20, spell aura
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - me8
+      statBonuses:
+      - stat: 0
+        value: 20
+      - stat: 1
+        value: 20
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1

@@ -1,0 +1,436 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f81796732fa749f0be2d16692cf44ae, type: 3}
+  m_Name: PriestSkillTree
+  m_EditorClassIdentifier: Ascendant::Ascendant.Progression.SkillTreeData
+  classId: priest
+  className: Priest
+  branches:
+  - branchId: priest_restoration
+    branchName: Restoration
+    branchDescription: Heal power, HoT effects, overheal shields.
+    nodes:
+    - nodeId: pr1
+      nodeName: Gentle Touch
+      description: HP +40
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 2
+        value: 40
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: pr2
+      nodeName: Healing Hands
+      description: ATK +5 (heal power)
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - pr1
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: pr3
+      nodeName: Renewal
+      description: Healing Light +3% HP
+      nodeType: 1
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - pr2
+      statBonuses:
+      - stat: 0
+        value: 5
+      modifiedAbilityId: healing_light
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: pr4
+      nodeName: Rejuvenation
+      description: Heal over Time effect
+      nodeType: 0
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - pr3
+      statBonuses:
+      - stat: 2
+        value: 80
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: pr5
+      nodeName: Vitality
+      description: HP +100
+      nodeType: 0
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - pr3
+      statBonuses:
+      - stat: 2
+        value: 100
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: pr6
+      nodeName: Overheal Shield
+      description: Excess healing becomes shield
+      nodeType: 1
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - pr4
+      - pr5
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: pr7
+      nodeName: Divine Favor
+      description: ATK +12 (heal power)
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - pr6
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: pr8
+      nodeName: Miracle
+      description: Resurrection heals to 75% HP
+      nodeType: 1
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - pr7
+      statBonuses:
+      - stat: 2
+        value: 150
+      modifiedAbilityId: resurrection
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: pr9
+      nodeName: Archpriest
+      description: HP +300, party heal aura
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - pr8
+      statBonuses:
+      - stat: 2
+        value: 300
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: priest_protection
+    branchName: Protection
+    branchDescription: Shield strength, damage reduction, cleanse.
+    nodes:
+    - nodeId: pp1
+      nodeName: Faith Shield
+      description: DEF +5
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: pp2
+      nodeName: Sacred Armor
+      description: DEF +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - pp1
+      statBonuses:
+      - stat: 1
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: pp3
+      nodeName: Reinforced Shield
+      description: Sacred Shield +10% strength
+      nodeType: 1
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - pp2
+      statBonuses:
+      - stat: 1
+        value: 5
+      modifiedAbilityId: sacred_shield
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: pp4
+      nodeName: Divine Protection
+      description: Party damage reduction +3%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - pp3
+      statBonuses:
+      - stat: 1
+        value: 10
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: pp5
+      nodeName: Purify
+      description: Cleanse debuffs on heal
+      nodeType: 1
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - pp3
+      statBonuses:
+      - stat: 2
+        value: 60
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: pp6
+      nodeName: Aegis
+      description: DEF +15
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - pp4
+      - pp5
+      statBonuses:
+      - stat: 1
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: pp7
+      nodeName: Ward of Light
+      description: HP +120
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - pp6
+      statBonuses:
+      - stat: 2
+        value: 120
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: pp8
+      nodeName: Bastion
+      description: DEF +20, Dodge +3%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - pp7
+      statBonuses:
+      - stat: 1
+        value: 20
+      - stat: 6
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: pp9
+      nodeName: Divine Bulwark
+      description: DEF +30, party shield on Resurrection
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - pp8
+      statBonuses:
+      - stat: 1
+        value: 30
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
+  - branchId: priest_wrath
+    branchName: Wrath
+    branchDescription: Holy damage, bonus vs Shadow/Undead, smite.
+    nodes:
+    - nodeId: pw1
+      nodeName: Smite
+      description: ATK +6
+      nodeType: 0
+      cost: 1
+      unlockLevel: 1
+      prerequisiteNodeIds: []
+      statBonuses:
+      - stat: 0
+        value: 6
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 0}
+      isCapstone: 0
+    - nodeId: pw2
+      nodeName: Holy Fire
+      description: ATK +8
+      nodeType: 0
+      cost: 1
+      unlockLevel: 5
+      prerequisiteNodeIds:
+      - pw1
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 1}
+      isCapstone: 0
+    - nodeId: pw3
+      nodeName: Righteous Fury
+      description: Crit Rate +3%
+      nodeType: 0
+      cost: 1
+      unlockLevel: 10
+      prerequisiteNodeIds:
+      - pw2
+      statBonuses:
+      - stat: 4
+        value: 0.03
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 2}
+      isCapstone: 0
+    - nodeId: pw4
+      nodeName: Holy Wrath
+      description: ATK +12
+      nodeType: 0
+      cost: 2
+      unlockLevel: 15
+      prerequisiteNodeIds:
+      - pw3
+      statBonuses:
+      - stat: 0
+        value: 12
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 3}
+      isCapstone: 0
+    - nodeId: pw5
+      nodeName: Consecration
+      description: AoE holy damage zone
+      nodeType: 1
+      cost: 1
+      unlockLevel: 20
+      prerequisiteNodeIds:
+      - pw3
+      statBonuses:
+      - stat: 0
+        value: 8
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0.25
+      treePosition: {x: 1, y: 3}
+      isCapstone: 0
+    - nodeId: pw6
+      nodeName: Exorcism
+      description: Bonus damage vs Shadow
+      nodeType: 0
+      cost: 2
+      unlockLevel: 30
+      prerequisiteNodeIds:
+      - pw4
+      - pw5
+      statBonuses:
+      - stat: 0
+        value: 15
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 4}
+      isCapstone: 0
+    - nodeId: pw7
+      nodeName: Judgment
+      description: ATK +18
+      nodeType: 0
+      cost: 1
+      unlockLevel: 40
+      prerequisiteNodeIds:
+      - pw6
+      statBonuses:
+      - stat: 0
+        value: 18
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 5}
+      isCapstone: 0
+    - nodeId: pw8
+      nodeName: Divine Storm
+      description: Crit Damage +20%
+      nodeType: 0
+      cost: 2
+      unlockLevel: 50
+      prerequisiteNodeIds:
+      - pw7
+      statBonuses:
+      - stat: 5
+        value: 0.2
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 6}
+      isCapstone: 0
+    - nodeId: pw9
+      nodeName: Avatar of Wrath
+      description: ATK +35, holy AoE on ult
+      nodeType: 2
+      cost: 3
+      unlockLevel: 75
+      prerequisiteNodeIds:
+      - pw8
+      statBonuses:
+      - stat: 0
+        value: 35
+      modifiedAbilityId: 
+      abilityBonusMultiplier: 0
+      treePosition: {x: 0, y: 7}
+      isCapstone: 1
