@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Ascendant.Core;
 
@@ -7,11 +8,29 @@ namespace Ascendant.Economy
     {
         public static CurrencyManager Instance { get; private set; }
 
-        double _gold;
-        double _xp;
+        readonly Dictionary<CurrencyType, double> _currencies = new();
 
-        public double Gold => _gold;
-        public double Xp => _xp;
+        // Overflow caps per currency (0 = unlimited)
+        static readonly Dictionary<CurrencyType, double> OverflowCaps = new()
+        {
+            { CurrencyType.Gold, 0 },
+            { CurrencyType.XP, 0 },
+            { CurrencyType.Stardust, 999_999 },
+            { CurrencyType.AscensionShards, 999_999 },
+            { CurrencyType.AetherCrystals, 99_999 },
+            { CurrencyType.ClassTokens, 99_999 },
+            { CurrencyType.GuildCoins, 999_999 },
+            { CurrencyType.StarFragments, 999_999 }
+        };
+
+        public double Gold => GetCurrency(CurrencyType.Gold);
+        public double Xp => GetCurrency(CurrencyType.XP);
+        public double Stardust => GetCurrency(CurrencyType.Stardust);
+        public double AscensionShards => GetCurrency(CurrencyType.AscensionShards);
+        public double AetherCrystals => GetCurrency(CurrencyType.AetherCrystals);
+        public double ClassTokens => GetCurrency(CurrencyType.ClassTokens);
+        public double GuildCoins => GetCurrency(CurrencyType.GuildCoins);
+        public double StarFragments => GetCurrency(CurrencyType.StarFragments);
 
         void Awake()
         {
@@ -21,6 +40,16 @@ namespace Ascendant.Economy
                 return;
             }
             Instance = this;
+            InitializeCurrencies();
+        }
+
+        void InitializeCurrencies()
+        {
+            foreach (CurrencyType type in System.Enum.GetValues(typeof(CurrencyType)))
+            {
+                if (!_currencies.ContainsKey(type))
+                    _currencies[type] = 0;
+            }
         }
 
         void OnEnable()
@@ -39,20 +68,63 @@ namespace Ascendant.Economy
             AddXp(evt.XpReward);
         }
 
-        public void AddGold(double amount)
+        public double GetCurrency(CurrencyType type)
         {
-            _gold += amount;
+            return _currencies.TryGetValue(type, out var val) ? val : 0;
+        }
+
+        public bool CanAfford(CurrencyType type, double amount)
+        {
+            return GetCurrency(type) >= amount;
+        }
+
+        public void AddCurrency(CurrencyType type, double amount)
+        {
+            if (amount <= 0) return;
+
+            double current = GetCurrency(type);
+            double newVal = current + amount;
+
+            // Apply overflow cap
+            if (OverflowCaps.TryGetValue(type, out var cap) && cap > 0)
+                newVal = System.Math.Min(newVal, cap);
+
+            _currencies[type] = newVal;
+
             EventBus.Publish(new CurrencyChangedEvent
             {
-                Type = CurrencyType.Gold,
-                Amount = _gold,
+                Type = type,
+                Amount = newVal,
                 Delta = amount
             });
         }
 
+        public bool SpendCurrency(CurrencyType type, double amount)
+        {
+            if (amount <= 0) return false;
+            if (!CanAfford(type, amount)) return false;
+
+            _currencies[type] -= amount;
+
+            EventBus.Publish(new CurrencyChangedEvent
+            {
+                Type = type,
+                Amount = _currencies[type],
+                Delta = -amount
+            });
+
+            return true;
+        }
+
+        // Legacy convenience methods
+        public void AddGold(double amount) => AddCurrency(CurrencyType.Gold, amount);
+        public bool SpendGold(double amount) => SpendCurrency(CurrencyType.Gold, amount);
+
         public void AddXp(double amount)
         {
-            _xp += amount;
+            if (amount <= 0) return;
+
+            AddCurrency(CurrencyType.XP, amount);
 
             // Distribute XP to all party heroes
             var partyManager = Party.PartyManager.Instance;
@@ -68,30 +140,19 @@ namespace Ascendant.Economy
             }
             else
             {
-                // Fallback: give XP to primary hero
                 var hero = Heroes.HeroManager.Instance?.GetPrimaryHero();
                 hero?.AddXp((float)amount);
             }
-
-            EventBus.Publish(new CurrencyChangedEvent
-            {
-                Type = CurrencyType.XP,
-                Amount = _xp,
-                Delta = amount
-            });
         }
 
-        public bool SpendGold(double amount)
+        public void SetCurrency(CurrencyType type, double value)
         {
-            if (_gold < amount) return false;
-            _gold -= amount;
-            EventBus.Publish(new CurrencyChangedEvent
-            {
-                Type = CurrencyType.Gold,
-                Amount = _gold,
-                Delta = -amount
-            });
-            return true;
+            _currencies[type] = System.Math.Max(0, value);
+        }
+
+        public Dictionary<CurrencyType, double> GetAllCurrencies()
+        {
+            return new Dictionary<CurrencyType, double>(_currencies);
         }
 
         void OnDestroy()

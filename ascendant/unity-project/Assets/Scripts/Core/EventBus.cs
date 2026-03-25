@@ -94,7 +94,13 @@ namespace Ascendant.Core
     public enum CurrencyType
     {
         Gold,
-        XP
+        XP,
+        Stardust,
+        AscensionShards,
+        AetherCrystals,
+        ClassTokens,
+        GuildCoins,
+        StarFragments
     }
 
     public struct HeroDamagedEvent
@@ -417,6 +423,89 @@ namespace Ascendant.Core
     {
         public int EnemyId;
         public float Duration;
+    }
+
+    // --- Phase 8: Economy, Gacha & Monetization Events ---
+
+    public struct GachaPullEvent
+    {
+        public string HeroClassId;
+        public HeroRarity Rarity;
+        public bool IsDuplicate;
+        public int StarFragmentsAwarded;
+    }
+
+    public struct GachaMultiPullEvent
+    {
+        public int PullCount;
+    }
+
+    public struct PityCounterChangedEvent
+    {
+        public int EpicPity;
+        public int LegendaryPity;
+    }
+
+    public struct SparkReadyEvent
+    {
+        public int TotalPulls;
+    }
+
+    public struct StarUpEvent
+    {
+        public string HeroClassId;
+        public int NewStarRating;
+    }
+
+    public struct BannerChangedEvent
+    {
+        public string BannerId;
+        public string BannerName;
+    }
+
+    public struct IAPPurchaseEvent
+    {
+        public string ProductId;
+        public bool Success;
+    }
+
+    public struct BattlePassTierClaimedEvent
+    {
+        public int Tier;
+        public bool IsPremium;
+    }
+
+    public struct BattlePassXPGainedEvent
+    {
+        public int Amount;
+        public int CurrentXP;
+        public int CurrentTier;
+    }
+
+    public struct QuestCompletedEvent
+    {
+        public string QuestId;
+        public bool IsWeekly;
+        public int BattlePassXP;
+    }
+
+    public struct QuestProgressEvent
+    {
+        public string QuestId;
+        public int CurrentProgress;
+        public int RequiredProgress;
+    }
+
+    public struct DailyQuestsRefreshedEvent { }
+    public struct WeeklyQuestsRefreshedEvent { }
+
+    public enum HeroRarity
+    {
+        Common,
+        Uncommon,
+        Rare,
+        Epic,
+        Legendary
     }
 
     // --- Phase 5: Island & Boss Events ---

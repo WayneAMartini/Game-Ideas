@@ -40,6 +40,15 @@ namespace Ascendant.Core
         public bool NotifExpeditionComplete = true;
         public int NotifQuietStart = 22;
         public int NotifQuietEnd = 8;
+
+        // Phase 8: Economy data
+        public Economy.WalletSaveData WalletData;
+        public Economy.GachaSaveData GachaData;
+        public Economy.StarSaveData StarData;
+        public Economy.BattlePassSaveData BattlePassData;
+        public Economy.QuestSaveData QuestData;
+        public bool PatronBlessingActive;
+        public long PatronBlessingExpiryUnix;
     }
 
     [Serializable]
@@ -208,6 +217,34 @@ namespace Ascendant.Core
                 save.NotifExpeditionComplete = notif.ExpeditionCompleteEnabled;
                 save.NotifQuietStart = notif.QuietHoursStart;
                 save.NotifQuietEnd = notif.QuietHoursEnd;
+            }
+
+            // Phase 8: Economy data
+            var wallet = Economy.Wallet.Instance;
+            if (wallet != null)
+                save.WalletData = wallet.GatherSaveData();
+
+            var gacha = Economy.GachaSystem.Instance;
+            if (gacha != null)
+                save.GachaData = gacha.GatherSaveData();
+
+            var stars = Economy.StarSystem.Instance;
+            if (stars != null)
+                save.StarData = stars.GatherSaveData();
+
+            var battlePass = Economy.BattlePassSystem.Instance;
+            if (battlePass != null)
+                save.BattlePassData = battlePass.GatherSaveData();
+
+            var quests = Economy.DailyQuestSystem.Instance;
+            if (quests != null)
+                save.QuestData = quests.GatherSaveData();
+
+            var iap = Economy.IAPManager.Instance;
+            if (iap != null)
+            {
+                save.PatronBlessingActive = iap.GetPatronActive();
+                save.PatronBlessingExpiryUnix = iap.GetPatronExpiryUnix();
             }
 
             return save;

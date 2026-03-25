@@ -2,6 +2,7 @@ using UnityEngine;
 using Ascendant.Core;
 using Ascendant.Combat;
 using Ascendant.Progression;
+using Ascendant.Economy;
 
 namespace Ascendant.Heroes
 {
@@ -82,12 +83,20 @@ namespace Ascendant.Heroes
                 masteryMult = 1f + masteryPercent / 100f;
             }
 
-            // Final stats: (base + equipment + skillTree) * mastery
+            // Star system bonus (percentage multiplier)
+            float starMult = 1f;
+            var starSystem = StarSystem.Instance;
+            if (starSystem != null && !string.IsNullOrEmpty(classId))
+            {
+                starMult = starSystem.GetStatMultiplier(classId);
+            }
+
+            // Final stats: (base + equipment + skillTree) * mastery * starMult
             float prevMaxHp = _maxHp;
-            _maxHp = (baseHp + equipHp + skillHp) * masteryMult;
-            _currentAtk = (baseAtk + equipAtk + skillAtk) * masteryMult;
-            _currentDef = (baseDef + equipDef + skillDef) * masteryMult;
-            _currentSpd = (baseSpd + equipSpd + skillSpd) * masteryMult;
+            _maxHp = (baseHp + equipHp + skillHp) * masteryMult * starMult;
+            _currentAtk = (baseAtk + equipAtk + skillAtk) * masteryMult * starMult;
+            _currentDef = (baseDef + equipDef + skillDef) * masteryMult * starMult;
+            _currentSpd = (baseSpd + equipSpd + skillSpd) * masteryMult * starMult;
 
             // Scale current HP proportionally if max HP changed
             if (prevMaxHp > 0f && _maxHp != prevMaxHp)
