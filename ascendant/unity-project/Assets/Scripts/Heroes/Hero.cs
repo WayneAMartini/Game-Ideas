@@ -1,6 +1,7 @@
 using UnityEngine;
 using Ascendant.Core;
 using Ascendant.Combat;
+using Ascendant.Progression;
 
 namespace Ascendant.Heroes
 {
@@ -43,10 +44,57 @@ namespace Ascendant.Heroes
 
         public void RecalculateStats()
         {
-            _maxHp = _data.GetHp(_level);
-            _currentAtk = _data.GetAtk(_level);
-            _currentDef = _data.GetDef(_level);
-            _currentSpd = _data.GetSpd(_level);
+            // Base stats from HeroData (level growth)
+            float baseHp = _data.GetHp(_level);
+            float baseAtk = _data.GetAtk(_level);
+            float baseDef = _data.GetDef(_level);
+            float baseSpd = _data.GetSpd(_level);
+
+            // Equipment bonuses (flat)
+            float equipAtk = 0f, equipDef = 0f, equipHp = 0f, equipSpd = 0f;
+            var equipSystem = EquipmentSystem.Instance;
+            if (equipSystem != null)
+            {
+                equipAtk = equipSystem.GetEquipmentStatBonus(_slot, StatType.ATK);
+                equipDef = equipSystem.GetEquipmentStatBonus(_slot, StatType.DEF);
+                equipHp = equipSystem.GetEquipmentStatBonus(_slot, StatType.HP);
+                equipSpd = equipSystem.GetEquipmentStatBonus(_slot, StatType.SPD);
+            }
+
+            // Skill tree bonuses (flat)
+            float skillAtk = 0f, skillDef = 0f, skillHp = 0f, skillSpd = 0f;
+            var skillSystem = SkillTreeSystem.Instance;
+            string classId = _data != null ? _data.classId : "";
+            if (skillSystem != null && !string.IsNullOrEmpty(classId))
+            {
+                skillAtk = skillSystem.GetSkillTreeStatBonus(_slot, StatType.ATK, classId);
+                skillDef = skillSystem.GetSkillTreeStatBonus(_slot, StatType.DEF, classId);
+                skillHp = skillSystem.GetSkillTreeStatBonus(_slot, StatType.HP, classId);
+                skillSpd = skillSystem.GetSkillTreeStatBonus(_slot, StatType.SPD, classId);
+            }
+
+            // Mastery bonus (percentage multiplier, permanent)
+            float masteryMult = 1f;
+            var masterySystem = ClassMasterySystem.Instance;
+            if (masterySystem != null && !string.IsNullOrEmpty(classId))
+            {
+                float masteryPercent = masterySystem.GetMasteryStatBonusPercent(classId);
+                masteryMult = 1f + masteryPercent / 100f;
+            }
+
+            // Final stats: (base + equipment + skillTree) * mastery
+            float prevMaxHp = _maxHp;
+            _maxHp = (baseHp + equipHp + skillHp) * masteryMult;
+            _currentAtk = (baseAtk + equipAtk + skillAtk) * masteryMult;
+            _currentDef = (baseDef + equipDef + skillDef) * masteryMult;
+            _currentSpd = (baseSpd + equipSpd + skillSpd) * masteryMult;
+
+            // Scale current HP proportionally if max HP changed
+            if (prevMaxHp > 0f && _maxHp != prevMaxHp)
+            {
+                float ratio = _currentHp / prevMaxHp;
+                _currentHp = ratio * _maxHp;
+            }
         }
 
         public void TakeDamage(float damage)
@@ -87,22 +135,40 @@ namespace Ascendant.Heroes
 
         public void AddXp(float amount)
         {
+            int levelCap = LevelingSystem.Instance != null ? LevelingSystem.Instance.GetLevelCap() : 100;
+
             _xp += amount;
 
-            while (_xp >= _xpToNextLevel && _level < 100)
+            while (_xp >= _xpToNextLevel && _level < levelCap)
             {
                 _xp -= _xpToNextLevel;
                 _level++;
                 RecalculateStats();
                 _currentHp = _maxHp; // full heal on level up
                 _xpToNextLevel = CalculateXpForLevel(_level + 1);
+
+                // Publish level-up event for skill point awards, etc.
+                string classId = _data != null ? _data.classId : "";
+                bool isMilestone = LevelingSystem.Instance != null &&
+                    LevelingSystem.Instance.XPCurve != null &&
+                    LevelingSystem.Instance.XPCurve.IsMilestoneLevel(_level);
+
+                EventBus.Publish(new LevelUpEvent
+                {
+                    HeroSlot = _slot,
+                    NewLevel = _level,
+                    ClassId = classId,
+                    IsMilestone = isMilestone
+                });
             }
         }
 
         static float CalculateXpForLevel(int level)
         {
-            // Exponential XP curve: 100 * level^1.8
-            return 100f * Mathf.Pow(level, 1.8f);
+            // Use LevelingSystem if available, fallback to default curve
+            if (LevelingSystem.Instance != null)
+                return LevelingSystem.Instance.GetXpForLevel(level);
+            return 100f * Mathf.Pow(level, 1.5f);
         }
     }
 }
