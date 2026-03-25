@@ -9,15 +9,28 @@ namespace Ascendant.UI
         [SerializeField] Image _borderImage;
         [SerializeField] Image _iconImage;
 
+        Affinity _currentAffinity;
+
         public void SetAffinity(Affinity affinity)
         {
+            _currentAffinity = affinity;
             Color affinityColor = GetAffinityColor(affinity);
+
+            // Apply colorblind remapping if active
+            var a11y = AccessibilityManager.Instance;
+            if (a11y != null)
+                affinityColor = a11y.RemapAffinityColor(affinity, affinityColor);
 
             if (_borderImage != null)
                 _borderImage.color = affinityColor;
 
             if (_iconImage != null)
                 _iconImage.color = affinityColor;
+        }
+
+        public void RefreshColor()
+        {
+            SetAffinity(_currentAffinity);
         }
 
         static Color GetAffinityColor(Affinity affinity)
