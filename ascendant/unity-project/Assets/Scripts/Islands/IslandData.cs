@@ -16,7 +16,11 @@ namespace Ascendant.Islands
 
         [Header("Biome")]
         public Affinity affinity;
+        [Tooltip("Secondary affinity for dual-affinity islands (Realm 2+)")]
+        public Affinity secondaryAffinity = Affinity.None;
         public BiomeData biomeData;
+
+        public bool IsDualAffinity => secondaryAffinity != Affinity.None && secondaryAffinity != affinity;
 
         [Header("Stages")]
         public int stageCount = 100;
@@ -37,6 +41,8 @@ namespace Ascendant.Islands
         public float miniBossAtkMultiplier = 1.5f;
         public float miniBossGoldMultiplier = 2f;
         public float miniBossXpMultiplier = 2f;
+        [Tooltip("Number of simultaneous mechanics on mini-bosses (1 for Realm 1, 2 for Realm 2, 3 for Realm 3)")]
+        public int miniBossMechanicCount = 1;
 
         [Header("Unlock")]
         public IslandData previousIsland;

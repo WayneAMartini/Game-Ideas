@@ -13,11 +13,13 @@ namespace Ascendant.Islands
 
         Enemy _currentMiniBoss;
         BossMechanic _activeMechanic;
+        List<BossMechanic> _activeMechanics = new();
         bool _isMiniBossFight;
 
         public bool IsMiniBossFight => _isMiniBossFight;
         public Enemy CurrentMiniBoss => _currentMiniBoss;
         public BossMechanic ActiveMechanic => _activeMechanic;
+        public IReadOnlyList<BossMechanic> ActiveMechanics => _activeMechanics;
 
         static readonly BossMechanicType[] MechanicPool =
         {
@@ -52,19 +54,28 @@ namespace Ascendant.Islands
 
         void Update()
         {
-            if (!_isMiniBossFight || _activeMechanic == null) return;
-            _activeMechanic.Update(Time.deltaTime);
+            if (!_isMiniBossFight) return;
 
-            // Check for add spawning trigger
-            if (_activeMechanic is AddSpawningMechanic addMech && addMech.ShouldSpawnAdds())
+            // Update all active mechanics
+            foreach (var mechanic in _activeMechanics)
             {
-                SpawnMinions(2);
+                if (mechanic == null) continue;
+                mechanic.Update(Time.deltaTime);
+
+                if (mechanic is AddSpawningMechanic addMech && addMech.ShouldSpawnAdds())
+                    SpawnMinions(2);
+                if (mechanic is SplitMechanic splitMech && splitMech.ShouldSplit())
+                    SpawnSplitCopy();
             }
 
-            // Check for split trigger
-            if (_activeMechanic is SplitMechanic splitMech && splitMech.ShouldSplit())
+            // Legacy single mechanic support
+            if (_activeMechanics.Count == 0 && _activeMechanic != null)
             {
-                SpawnSplitCopy();
+                _activeMechanic.Update(Time.deltaTime);
+                if (_activeMechanic is AddSpawningMechanic addMech2 && addMech2.ShouldSpawnAdds())
+                    SpawnMinions(2);
+                if (_activeMechanic is SplitMechanic splitMech2 && splitMech2.ShouldSplit())
+                    SpawnSplitCopy();
             }
         }
 
@@ -97,19 +108,39 @@ namespace Ascendant.Islands
             _currentMiniBoss = boss;
             _isMiniBossFight = true;
 
-            // Assign random mechanic
-            var mechanicType = MechanicPool[Random.Range(0, MechanicPool.Length)];
-            _activeMechanic = CreateMechanic(mechanicType);
-            _activeMechanic.Initialize(boss);
-            _activeMechanic.Activate();
+            // Determine mechanic count from island data
+            int mechanicCount = island != null ? Mathf.Max(1, island.miniBossMechanicCount) : 1;
+            _activeMechanics.Clear();
+
+            var usedMechanics = new HashSet<int>();
+            BossMechanicType firstMechanicType = BossMechanicType.Enrage;
+
+            for (int m = 0; m < mechanicCount && m < MechanicPool.Length; m++)
+            {
+                int idx;
+                do { idx = Random.Range(0, MechanicPool.Length); } while (usedMechanics.Contains(idx));
+                usedMechanics.Add(idx);
+
+                var mechanicType = MechanicPool[idx];
+                var mechanic = CreateMechanic(mechanicType);
+                mechanic.Initialize(boss);
+                mechanic.Activate();
+                _activeMechanics.Add(mechanic);
+
+                if (m == 0)
+                {
+                    _activeMechanic = mechanic;
+                    firstMechanicType = mechanicType;
+                }
+            }
 
             EventBus.Publish(new MiniBossSpawnedEvent
             {
                 StageNumber = stage,
-                Mechanic = mechanicType
+                Mechanic = firstMechanicType
             });
 
-            Debug.Log($"[MiniBossController] Spawned mini-boss with {mechanicType} mechanic at stage {stage}");
+            Debug.Log($"[MiniBossController] Spawned mini-boss with {mechanicCount} mechanic(s) at stage {stage}");
         }
 
         Enemy GetEnemyPrefab()
@@ -181,6 +212,9 @@ namespace Ascendant.Islands
         void EndMiniBossFight()
         {
             _isMiniBossFight = false;
+            foreach (var mechanic in _activeMechanics)
+                mechanic?.Deactivate();
+            _activeMechanics.Clear();
             _activeMechanic?.Deactivate();
             _activeMechanic = null;
             _currentMiniBoss = null;

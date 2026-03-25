@@ -13,6 +13,10 @@ namespace Ascendant.Core
         Ascending,
         TranscendenceTrial,
         ArenaFight,
-        WorldBossFight
+        WorldBossFight,
+        TowerOfTrials,
+        VoidRift,
+        SeasonalEvent,
+        InfiniteAscension
     }
 }

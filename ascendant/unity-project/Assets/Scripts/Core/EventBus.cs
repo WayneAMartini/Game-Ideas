@@ -720,4 +720,128 @@ namespace Ascendant.Core
         public string MilestoneName;
         public string Description;
     }
+
+    // --- Phase 10: Events & Endgame ---
+
+    // Tower of Trials
+    public struct TowerEnteredEvent { }
+
+    public struct TowerFloorStartedEvent
+    {
+        public int FloorNumber;
+        public string ModifierName;
+        public int EnemyLevel;
+    }
+
+    public struct TowerFloorClearedEvent
+    {
+        public int FloorNumber;
+        public bool IsMilestone;
+        public int PersonalBest;
+    }
+
+    public struct TowerBuffChoiceEvent
+    {
+        public Events.TowerBuff[] Choices;
+        public int FloorNumber;
+    }
+
+    public struct TowerCompletedEvent
+    {
+        public int FloorsCleared;
+        public int PersonalBest;
+    }
+
+    public struct TowerFailedEvent
+    {
+        public int FloorsCleared;
+        public int PersonalBest;
+    }
+
+    // Void Rifts
+    public struct VoidRiftStartedEvent
+    {
+        public string RiftName;
+        public Events.RiftTheme Theme;
+    }
+
+    public struct VoidRiftStageStartedEvent
+    {
+        public int StageNumber;
+        public string RiftName;
+        public int EnemyLevel;
+    }
+
+    public struct VoidRiftStageClearedEvent
+    {
+        public int StageNumber;
+        public int AetherCrystalsEarned;
+        public bool AllStagesCleared;
+    }
+
+    public struct VoidRiftStageFailedEvent
+    {
+        public int StageNumber;
+        public int AttemptsRemaining;
+    }
+
+    public struct VoidRiftCompletedEvent
+    {
+        public string RiftName;
+        public int TotalAetherCrystals;
+    }
+
+    // Seasonal Events
+    public struct SeasonalEventStartedEvent
+    {
+        public string EventId;
+        public string EventName;
+        public Events.SeasonalEventTheme Theme;
+    }
+
+    public struct SeasonalEventEndedEvent
+    {
+        public string EventId;
+        public string EventName;
+        public int TotalCurrencyEarned;
+        public int StagesCompleted;
+    }
+
+    public struct SeasonalEventStageCompletedEvent
+    {
+        public int StageNumber;
+        public int TotalStages;
+        public int EventCurrencyEarned;
+    }
+
+    public struct EventShopPurchaseEvent
+    {
+        public string ItemId;
+        public string ItemName;
+        public int Cost;
+    }
+
+    public struct EventQuestCompletedEvent
+    {
+        public string QuestId;
+        public string QuestName;
+        public int CurrencyReward;
+    }
+
+    // Infinite Ascension
+    public struct InfiniteAscensionUnlockedEvent { }
+
+    public struct InfiniteAscensionIslandStartedEvent
+    {
+        public int IslandNumber;
+        public string IslandName;
+        public float DifficultyMultiplier;
+    }
+
+    public struct InfiniteAscensionIslandCompletedEvent
+    {
+        public int IslandNumber;
+        public string IslandName;
+        public int HighestIsland;
+    }
 }

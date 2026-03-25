@@ -16,15 +16,19 @@ namespace Ascendant.Backend
         public const string LB_BOSS_DAMAGE = "boss_damage";
         public const string LB_PANTHEON_RACE = "pantheon_race";
         public const string LB_ARENA_RANK = "arena_rank";
+        public const string LB_TOWER_FLOOR = "tower_floor";
+        public const string LB_INFINITE_ISLAND = "infinite_island";
 
         public static readonly string[] AllLeaderboards =
         {
-            LB_HIGHEST_ISLAND, LB_SPEED_ASCENSION, LB_BOSS_DAMAGE, LB_PANTHEON_RACE, LB_ARENA_RANK
+            LB_HIGHEST_ISLAND, LB_SPEED_ASCENSION, LB_BOSS_DAMAGE, LB_PANTHEON_RACE, LB_ARENA_RANK,
+            LB_TOWER_FLOOR, LB_INFINITE_ISLAND
         };
 
         public static readonly string[] LeaderboardDisplayNames =
         {
-            "Highest Island", "Speed Ascension", "Boss Damage", "Pantheon Race", "Arena Rank"
+            "Highest Island", "Speed Ascension", "Boss Damage", "Pantheon Race", "Arena Rank",
+            "Tower of Trials", "Infinite Ascension"
         };
 
         void Awake()
@@ -44,6 +48,8 @@ namespace Ascendant.Backend
             EventBus.Subscribe<BossDefeatedEvent>(OnBossDefeated);
             EventBus.Subscribe<DemigodRetiredEvent>(OnDemigodRetired);
             EventBus.Subscribe<ArenaMatchResultEvent>(OnArenaResult);
+            EventBus.Subscribe<TowerFloorClearedEvent>(OnTowerFloorCleared);
+            EventBus.Subscribe<InfiniteAscensionIslandCompletedEvent>(OnInfiniteIslandCompleted);
         }
 
         void OnDisable()
@@ -53,6 +59,8 @@ namespace Ascendant.Backend
             EventBus.Unsubscribe<BossDefeatedEvent>(OnBossDefeated);
             EventBus.Unsubscribe<DemigodRetiredEvent>(OnDemigodRetired);
             EventBus.Unsubscribe<ArenaMatchResultEvent>(OnArenaResult);
+            EventBus.Unsubscribe<TowerFloorClearedEvent>(OnTowerFloorCleared);
+            EventBus.Unsubscribe<InfiniteAscensionIslandCompletedEvent>(OnInfiniteIslandCompleted);
         }
 
         void OnStageAdvanced(StageAdvancedEvent evt)
@@ -90,6 +98,16 @@ namespace Ascendant.Backend
         public void SubmitBossDamage(long damage)
         {
             SubmitScore(LB_BOSS_DAMAGE, damage);
+        }
+
+        void OnTowerFloorCleared(TowerFloorClearedEvent evt)
+        {
+            SubmitScore(LB_TOWER_FLOOR, evt.PersonalBest);
+        }
+
+        void OnInfiniteIslandCompleted(InfiniteAscensionIslandCompletedEvent evt)
+        {
+            SubmitScore(LB_INFINITE_ISLAND, evt.HighestIsland);
         }
 
         void SubmitScore(string leaderboardId, long score)

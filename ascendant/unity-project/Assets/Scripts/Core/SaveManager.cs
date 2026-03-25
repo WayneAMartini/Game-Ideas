@@ -58,6 +58,15 @@ namespace Ascendant.Core
         public Backend.ArenaSaveData ArenaData;
         public Backend.WorldBossSaveData WorldBossData;
         public Backend.GuildExpeditionSaveData GuildExpeditionData;
+
+        // Phase 10: Events & Endgame data
+        public Events.TowerSaveData TowerData;
+        public Events.VoidRiftSaveData VoidRiftData;
+        public Events.SeasonalEventSaveData SeasonalEventData;
+        public Events.InfiniteAscensionSaveData InfiniteAscensionData;
+        public int HighestRealmUnlocked = 1;
+        public bool Realm2Unlocked;
+        public bool Realm3Unlocked;
     }
 
     [Serializable]
@@ -276,6 +285,23 @@ namespace Ascendant.Core
             if (guildExpedition != null)
                 save.GuildExpeditionData = guildExpedition.GatherSaveData();
 
+            // Phase 10: Events & Endgame
+            var tower = Events.TowerOfTrials.Instance;
+            if (tower != null)
+                save.TowerData = tower.GatherSaveData();
+
+            var voidRift = Events.VoidRiftManager.Instance;
+            if (voidRift != null)
+                save.VoidRiftData = voidRift.GatherSaveData();
+
+            var seasonal = Events.SeasonalEventManager.Instance;
+            if (seasonal != null)
+                save.SeasonalEventData = seasonal.GatherSaveData();
+
+            var infinite = Events.InfiniteAscension.Instance;
+            if (infinite != null)
+                save.InfiniteAscensionData = infinite.GatherSaveData();
+
             return save;
         }
 
@@ -289,6 +315,12 @@ namespace Ascendant.Core
             Backend.ArenaManager.Instance?.LoadSaveData(save.ArenaData);
             Backend.WorldBossManager.Instance?.LoadSaveData(save.WorldBossData);
             Backend.GuildExpedition.Instance?.LoadSaveData(save.GuildExpeditionData);
+
+            // Phase 10: Restore events & endgame
+            Events.TowerOfTrials.Instance?.LoadSaveData(save.TowerData);
+            Events.VoidRiftManager.Instance?.LoadSaveData(save.VoidRiftData);
+            Events.SeasonalEventManager.Instance?.LoadSaveData(save.SeasonalEventData);
+            Events.InfiniteAscension.Instance?.LoadSaveData(save.InfiniteAscensionData);
 
             Debug.Log($"[SaveManager] Loaded save from {DateTimeOffset.FromUnixTimeSeconds(save.SaveTimestampUnix).LocalDateTime}");
         }
