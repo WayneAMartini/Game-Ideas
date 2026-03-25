@@ -31,11 +31,29 @@ namespace Ascendant.Combat
                 return;
             }
 
+            SpawnWaveWithEnemies(stage, _enemyTypes);
+        }
+
+        public void SpawnWaveWithEnemies(int stage, List<EnemyData> enemyTypes)
+        {
+            if (enemyTypes == null || enemyTypes.Count == 0)
+            {
+                Debug.LogWarning("EnemySpawner: No enemy types provided!");
+                return;
+            }
+
+            if (_enemyPrefab == null)
+            {
+                Debug.LogError("EnemySpawner: Enemy prefab is not assigned!");
+                return;
+            }
+
             int count = Random.Range(_minEnemiesPerWave, _maxEnemiesPerWave + 1);
+            Debug.Log($"[EnemySpawner] Spawning wave of {count} enemies for stage {stage}");
 
             for (int i = 0; i < count; i++)
             {
-                var data = _enemyTypes[Random.Range(0, _enemyTypes.Count)];
+                var data = enemyTypes[Random.Range(0, enemyTypes.Count)];
                 SpawnEnemy(data, stage, i, count);
             }
         }
@@ -52,6 +70,7 @@ namespace Ascendant.Combat
             var parent = _spawnParent != null ? _spawnParent : transform;
             var enemy = Instantiate(_enemyPrefab, pos, Quaternion.identity, parent);
             enemy.Initialize(data, stage);
+            Debug.Log($"[EnemySpawner] Spawned {data.enemyName} at {pos}");
 
             EnemyManager.Instance?.Register(enemy);
         }

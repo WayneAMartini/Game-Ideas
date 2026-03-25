@@ -418,4 +418,77 @@ namespace Ascendant.Core
         public int EnemyId;
         public float Duration;
     }
+
+    // --- Phase 5: Island & Boss Events ---
+
+    public struct IslandChangedEvent
+    {
+        public int IslandIndex;
+        public Islands.IslandData IslandData;
+    }
+
+    public struct IslandCompletedEvent
+    {
+        public int IslandIndex;
+        public Islands.IslandData IslandData;
+    }
+
+    public struct IslandUnlockedEvent
+    {
+        public int IslandIndex;
+    }
+
+    public struct RealmBossUnlockedEvent
+    {
+        public int RealmNumber;
+    }
+
+    public struct MiniBossSpawnedEvent
+    {
+        public int StageNumber;
+        public Islands.BossMechanicType Mechanic;
+    }
+
+    public struct IslandBossSpawnedEvent
+    {
+        public int IslandIndex;
+        public string BossName;
+    }
+
+    public struct BossPhaseChangedEvent
+    {
+        public int PhaseIndex;
+        public string PhaseName;
+        public float HpThreshold;
+    }
+
+    public struct BossDefeatedEvent
+    {
+        public string BossName;
+        public bool IsIslandBoss;
+        public bool IsRealmBoss;
+    }
+
+    public struct BiomeEffectAppliedEvent
+    {
+        public Islands.BiomeEffectType EffectType;
+        public float Value;
+    }
+
+    public struct BossMechanicActivatedEvent
+    {
+        public Islands.BossMechanicType MechanicType;
+        public string WarningText;
+    }
+
+    public struct DodgePromptEvent
+    {
+        public UnityEngine.Vector3 TargetPosition;
+        public float TimeWindow;
+    }
+
+    public struct RealmBossDefeatedEvent
+    {
+        public int RealmNumber;
+    }
 }

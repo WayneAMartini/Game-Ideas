@@ -5,6 +5,7 @@ using Ascendant.Core;
 using Ascendant.Progression;
 using Ascendant.Economy;
 using Ascendant.Party;
+using Ascendant.Islands;
 
 namespace Ascendant.UI
 {
@@ -12,6 +13,20 @@ namespace Ascendant.UI
     {
         [Header("Stage Display")]
         [SerializeField] TextMeshProUGUI _stageText;
+
+        [Header("Island/Biome Display")]
+        [SerializeField] TextMeshProUGUI _islandNameText;
+        [SerializeField] Image _biomeIndicator;
+
+        [Header("Boss HP Bar")]
+        [SerializeField] GameObject _bossHpPanel;
+        [SerializeField] Slider _bossHpBar;
+        [SerializeField] TextMeshProUGUI _bossNameText;
+        [SerializeField] TextMeshProUGUI _bossPhaseText;
+
+        [Header("Boss Mechanic Warning")]
+        [SerializeField] GameObject _mechanicWarningPanel;
+        [SerializeField] TextMeshProUGUI _mechanicWarningText;
 
         [Header("Currency Display")]
         [SerializeField] TextMeshProUGUI _goldText;
@@ -37,12 +52,20 @@ namespace Ascendant.UI
         [SerializeField] GameObject _formationPanel;
         [SerializeField] Image[] _formationSlotImages;
 
+        float _mechanicWarningTimer;
+
         void OnEnable()
         {
             EventBus.Subscribe<StageAdvancedEvent>(OnStageAdvanced);
             EventBus.Subscribe<CurrencyChangedEvent>(OnCurrencyChanged);
             EventBus.Subscribe<MomentumChangedEvent>(OnMomentumChanged);
             EventBus.Subscribe<PartyChangedEvent>(OnPartyChanged);
+            EventBus.Subscribe<IslandChangedEvent>(OnIslandChanged);
+            EventBus.Subscribe<IslandBossSpawnedEvent>(OnIslandBossSpawned);
+            EventBus.Subscribe<BossPhaseChangedEvent>(OnBossPhaseChanged);
+            EventBus.Subscribe<BossDefeatedEvent>(OnBossDefeated);
+            EventBus.Subscribe<BossMechanicActivatedEvent>(OnBossMechanicActivated);
+            EventBus.Subscribe<MiniBossSpawnedEvent>(OnMiniBossSpawned);
         }
 
         void OnDisable()
@@ -51,18 +74,41 @@ namespace Ascendant.UI
             EventBus.Unsubscribe<CurrencyChangedEvent>(OnCurrencyChanged);
             EventBus.Unsubscribe<MomentumChangedEvent>(OnMomentumChanged);
             EventBus.Unsubscribe<PartyChangedEvent>(OnPartyChanged);
+            EventBus.Unsubscribe<IslandChangedEvent>(OnIslandChanged);
+            EventBus.Unsubscribe<IslandBossSpawnedEvent>(OnIslandBossSpawned);
+            EventBus.Unsubscribe<BossPhaseChangedEvent>(OnBossPhaseChanged);
+            EventBus.Unsubscribe<BossDefeatedEvent>(OnBossDefeated);
+            EventBus.Unsubscribe<BossMechanicActivatedEvent>(OnBossMechanicActivated);
+            EventBus.Unsubscribe<MiniBossSpawnedEvent>(OnMiniBossSpawned);
         }
 
         void Start()
         {
             UpdateStageDisplay();
+            UpdateIslandDisplay();
             UpdateCurrencyDisplay();
             RefreshPartyDisplay();
+            HideBossUI();
+        }
+
+        void Update()
+        {
+            // Boss HP bar update
+            UpdateBossHpBar();
+
+            // Mechanic warning auto-hide
+            if (_mechanicWarningTimer > 0f)
+            {
+                _mechanicWarningTimer -= Time.deltaTime;
+                if (_mechanicWarningTimer <= 0f)
+                    HideMechanicWarning();
+            }
         }
 
         void OnStageAdvanced(StageAdvancedEvent evt)
         {
             UpdateStageDisplay();
+            HideBossUI();
         }
 
         void OnCurrencyChanged(CurrencyChangedEvent evt)
@@ -82,6 +128,38 @@ namespace Ascendant.UI
         void OnPartyChanged(PartyChangedEvent evt)
         {
             RefreshPartyDisplay();
+        }
+
+        void OnIslandChanged(IslandChangedEvent evt)
+        {
+            UpdateIslandDisplay();
+            UpdateStageDisplay();
+        }
+
+        void OnIslandBossSpawned(IslandBossSpawnedEvent evt)
+        {
+            ShowBossUI(evt.BossName);
+        }
+
+        void OnMiniBossSpawned(MiniBossSpawnedEvent evt)
+        {
+            ShowBossUI($"Mini-Boss (Stage {evt.StageNumber})");
+        }
+
+        void OnBossPhaseChanged(BossPhaseChangedEvent evt)
+        {
+            if (_bossPhaseText != null)
+                _bossPhaseText.text = evt.PhaseName;
+        }
+
+        void OnBossDefeated(BossDefeatedEvent evt)
+        {
+            HideBossUI();
+        }
+
+        void OnBossMechanicActivated(BossMechanicActivatedEvent evt)
+        {
+            ShowMechanicWarning(evt.WarningText);
         }
 
         void RefreshPartyDisplay()
@@ -123,7 +201,75 @@ namespace Ascendant.UI
 
             var sm = StageManager.Instance;
             if (sm != null)
-                _stageText.text = $"Island {sm.CurrentIsland} \u2014 Stage {sm.CurrentStage}/{sm.StagesPerIsland}";
+                _stageText.text = $"{sm.CurrentIslandName} \u2014 Stage {sm.CurrentStage}/{sm.StagesPerIsland}";
+        }
+
+        void UpdateIslandDisplay()
+        {
+            var island = IslandManager.Instance?.CurrentIsland;
+            if (island == null) return;
+
+            if (_islandNameText != null)
+                _islandNameText.text = island.islandName;
+
+            if (_biomeIndicator != null)
+            {
+                _biomeIndicator.color = island.biomeData != null
+                    ? island.biomeData.ambientColor
+                    : Color.white;
+            }
+        }
+
+        void ShowBossUI(string bossName)
+        {
+            if (_bossHpPanel != null) _bossHpPanel.SetActive(true);
+            if (_bossNameText != null) _bossNameText.text = bossName;
+            if (_bossHpBar != null) _bossHpBar.value = 1f;
+            if (_bossPhaseText != null) _bossPhaseText.text = "";
+        }
+
+        void HideBossUI()
+        {
+            if (_bossHpPanel != null) _bossHpPanel.SetActive(false);
+            HideMechanicWarning();
+        }
+
+        void UpdateBossHpBar()
+        {
+            if (_bossHpBar == null) return;
+
+            var islandBoss = IslandBossController.Instance;
+            if (islandBoss != null && islandBoss.IsBossFight)
+            {
+                _bossHpBar.value = islandBoss.BossHpPercent;
+                return;
+            }
+
+            var realmBoss = RealmBossController.Instance;
+            if (realmBoss != null && realmBoss.IsBossFight)
+            {
+                // Realm boss HP tracked similarly
+                return;
+            }
+
+            var miniBoss = MiniBossController.Instance;
+            if (miniBoss != null && miniBoss.IsMiniBossFight && miniBoss.CurrentMiniBoss != null)
+            {
+                var mb = miniBoss.CurrentMiniBoss;
+                _bossHpBar.value = mb.CurrentHp / mb.MaxHp;
+            }
+        }
+
+        void ShowMechanicWarning(string text)
+        {
+            if (_mechanicWarningPanel != null) _mechanicWarningPanel.SetActive(true);
+            if (_mechanicWarningText != null) _mechanicWarningText.text = text;
+            _mechanicWarningTimer = 3f;
+        }
+
+        void HideMechanicWarning()
+        {
+            if (_mechanicWarningPanel != null) _mechanicWarningPanel.SetActive(false);
         }
 
         void UpdateCurrencyDisplay()

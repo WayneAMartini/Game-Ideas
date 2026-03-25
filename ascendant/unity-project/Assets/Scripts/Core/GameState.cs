@@ -5,6 +5,10 @@ namespace Ascendant.Core
         Loading,
         Combat,
         Paused,
-        StageTransition
+        StageTransition,
+        MiniBoss,
+        IslandBoss,
+        RealmBoss,
+        IslandMap
     }
 }
