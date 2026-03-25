@@ -52,6 +52,12 @@ namespace Ascendant.Core
         public Economy.QuestSaveData QuestData;
         public bool PatronBlessingActive;
         public long PatronBlessingExpiryUnix;
+
+        // Phase 9: Social & Backend data
+        public Backend.GuildSaveData GuildData;
+        public Backend.ArenaSaveData ArenaData;
+        public Backend.WorldBossSaveData WorldBossData;
+        public Backend.GuildExpeditionSaveData GuildExpeditionData;
     }
 
     [Serializable]
@@ -253,6 +259,23 @@ namespace Ascendant.Core
                 save.PatronBlessingExpiryUnix = iap.GetPatronExpiryUnix();
             }
 
+            // Phase 9: Social & Backend data
+            var guild = Backend.GuildManager.Instance;
+            if (guild != null)
+                save.GuildData = guild.GatherSaveData();
+
+            var arena = Backend.ArenaManager.Instance;
+            if (arena != null)
+                save.ArenaData = arena.GatherSaveData();
+
+            var worldBoss = Backend.WorldBossManager.Instance;
+            if (worldBoss != null)
+                save.WorldBossData = worldBoss.GatherSaveData();
+
+            var guildExpedition = Backend.GuildExpedition.Instance;
+            if (guildExpedition != null)
+                save.GuildExpeditionData = guildExpedition.GatherSaveData();
+
             return save;
         }
 
@@ -260,6 +283,12 @@ namespace Ascendant.Core
         {
             // Phase 6: Restore ascension state
             ApplyAscensionData(save.AscensionData);
+
+            // Phase 9: Restore social data
+            Backend.GuildManager.Instance?.LoadSaveData(save.GuildData);
+            Backend.ArenaManager.Instance?.LoadSaveData(save.ArenaData);
+            Backend.WorldBossManager.Instance?.LoadSaveData(save.WorldBossData);
+            Backend.GuildExpedition.Instance?.LoadSaveData(save.GuildExpeditionData);
 
             Debug.Log($"[SaveManager] Loaded save from {DateTimeOffset.FromUnixTimeSeconds(save.SaveTimestampUnix).LocalDateTime}");
         }

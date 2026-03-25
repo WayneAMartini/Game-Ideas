@@ -11,6 +11,8 @@ namespace Ascendant.Core
         RealmBoss,
         IslandMap,
         Ascending,
-        TranscendenceTrial
+        TranscendenceTrial,
+        ArenaFight,
+        WorldBossFight
     }
 }
