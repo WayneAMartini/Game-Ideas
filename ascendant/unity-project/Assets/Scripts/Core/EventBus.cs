@@ -508,6 +508,93 @@ namespace Ascendant.Core
         Legendary
     }
 
+    // --- Phase 9: Backend & Social Events ---
+
+    public struct BackendConnectionChangedEvent
+    {
+        public Backend.ConnectionState OldState;
+        public Backend.ConnectionState NewState;
+    }
+
+    public struct AuthStateChangedEvent
+    {
+        public Backend.AuthState State;
+        public string UserId;
+    }
+
+    public struct CloudSaveSyncedEvent
+    {
+        public bool Success;
+        public long TimestampUnix;
+    }
+
+    public struct CloudSaveConflictEvent
+    {
+        public long LocalTimestamp;
+        public long ServerTimestamp;
+    }
+
+    public struct LeaderboardScoreSubmittedEvent
+    {
+        public string LeaderboardId;
+        public long Score;
+    }
+
+    public struct GuildJoinedEvent
+    {
+        public string GuildId;
+        public string GuildName;
+    }
+
+    public struct GuildLeftEvent { }
+
+    public struct GuildTechUpgradedEvent
+    {
+        public string TechId;
+        public int NewLevel;
+    }
+
+    public struct ArenaMatchResultEvent
+    {
+        public bool Won;
+        public int NewElo;
+        public Backend.ArenaRank NewRank;
+    }
+
+    public struct ArenaSeasonEndedEvent
+    {
+        public int SeasonNumber;
+        public Backend.ArenaRank FinalRank;
+        public int FinalElo;
+    }
+
+    public struct WorldBossEventStartedEvent
+    {
+        public string BossId;
+        public string BossName;
+    }
+
+    public struct WorldBossDamageDealtEvent
+    {
+        public double Damage;
+        public double RemainingHp;
+        public double MaxHp;
+    }
+
+    public struct WorldBossDefeatedEvent
+    {
+        public string BossId;
+    }
+
+    public struct GuildExpeditionNodeClearedEvent
+    {
+        public int X;
+        public int Y;
+        public string ClearedByName;
+    }
+
+    public struct GuildExpeditionBossUnlockedEvent { }
+
     // --- Phase 5: Island & Boss Events ---
 
     public struct IslandChangedEvent
@@ -579,5 +666,58 @@ namespace Ascendant.Core
     public struct RealmBossDefeatedEvent
     {
         public int RealmNumber;
+    }
+
+    // --- Phase 6: Ascension Prestige Events ---
+
+    public struct AscensionEvent
+    {
+        public int HeroSlot;
+        public string ClassId;
+        public int AscensionCount;
+        public double ShardsEarned;
+        public int HighestIslandReached;
+    }
+
+    public struct AscensionTierChangedEvent
+    {
+        public int HeroSlot;
+        public Progression.AscensionTierLevel OldTier;
+        public Progression.AscensionTierLevel NewTier;
+        public int AscensionCount;
+    }
+
+    public struct AscensionSkillNodePurchasedEvent
+    {
+        public string NodeId;
+        public string BranchId;
+        public double ShardCost;
+    }
+
+    public struct DemigodRetiredEvent
+    {
+        public string ClassId;
+        public string DemigodBuffDescription;
+        public int PantheonSlotsFilled;
+    }
+
+    public struct TranscendenceTrialStartedEvent
+    {
+        public int HeroSlot;
+        public string ClassId;
+    }
+
+    public struct TranscendenceTrialCompletedEvent
+    {
+        public int HeroSlot;
+        public string ClassId;
+        public bool Success;
+    }
+
+    public struct PantheonMilestoneEvent
+    {
+        public int SlotsFilled;
+        public string MilestoneName;
+        public string Description;
     }
 }

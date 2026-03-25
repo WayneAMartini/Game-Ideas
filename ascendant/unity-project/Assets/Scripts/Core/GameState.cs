@@ -9,6 +9,8 @@ namespace Ascendant.Core
         MiniBoss,
         IslandBoss,
         RealmBoss,
-        IslandMap
+        IslandMap,
+        Ascending,
+        TranscendenceTrial
     }
 }

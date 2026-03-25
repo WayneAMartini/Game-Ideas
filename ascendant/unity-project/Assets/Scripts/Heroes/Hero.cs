@@ -3,6 +3,7 @@ using Ascendant.Core;
 using Ascendant.Combat;
 using Ascendant.Progression;
 using Ascendant.Economy;
+using Ascendant.Party;
 
 namespace Ascendant.Heroes
 {
@@ -41,6 +42,15 @@ namespace Ascendant.Heroes
             RecalculateStats();
             _currentHp = _maxHp;
             _xpToNextLevel = CalculateXpForLevel(_level + 1);
+        }
+
+        public void ResetLevel()
+        {
+            _level = 1;
+            _xp = 0f;
+            _xpToNextLevel = CalculateXpForLevel(2);
+            RecalculateStats();
+            _currentHp = _maxHp;
         }
 
         public void RecalculateStats()
@@ -91,12 +101,37 @@ namespace Ascendant.Heroes
                 starMult = starSystem.GetStatMultiplier(classId);
             }
 
-            // Final stats: (base + equipment + skillTree) * mastery * starMult
+            // Ascension tier bonus (percentage multiplier, permanent per hero)
+            float tierMult = 1f;
+            var tierSystem = TierBonusSystem.Instance;
+            if (tierSystem != null)
+            {
+                tierMult = tierSystem.GetTierStatMultiplier(_slot);
+            }
+
+            // Ascension skill tree bonus (percentage multiplier, global permanent)
+            float ascSkillMult = 1f;
+            var ascSkillTree = AscensionSkillTree.Instance;
+            if (ascSkillTree != null)
+            {
+                ascSkillMult = 1f + ascSkillTree.GetTotalStatBonusPercent(StatType.ATK) / 100f;
+            }
+
+            // Pantheon bonus (percentage multiplier, global permanent)
+            float pantheonMult = 1f;
+            var demigodSystem = DemigodSystem.Instance;
+            if (demigodSystem != null)
+            {
+                pantheonMult = 1f + demigodSystem.GetGlobalStatBonusPercent() / 100f;
+            }
+
+            // Final stats: (base + equipment + skillTree) * mastery * starMult * tierMult * ascSkillMult * pantheonMult
+            float totalMult = masteryMult * starMult * tierMult * ascSkillMult * pantheonMult;
             float prevMaxHp = _maxHp;
-            _maxHp = (baseHp + equipHp + skillHp) * masteryMult * starMult;
-            _currentAtk = (baseAtk + equipAtk + skillAtk) * masteryMult * starMult;
-            _currentDef = (baseDef + equipDef + skillDef) * masteryMult * starMult;
-            _currentSpd = (baseSpd + equipSpd + skillSpd) * masteryMult * starMult;
+            _maxHp = (baseHp + equipHp + skillHp) * totalMult;
+            _currentAtk = (baseAtk + equipAtk + skillAtk) * totalMult;
+            _currentDef = (baseDef + equipDef + skillDef) * totalMult;
+            _currentSpd = (baseSpd + equipSpd + skillSpd) * totalMult;
 
             // Scale current HP proportionally if max HP changed
             if (prevMaxHp > 0f && _maxHp != prevMaxHp)

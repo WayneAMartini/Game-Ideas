@@ -116,6 +116,31 @@ namespace Ascendant.Islands
             return CurrentIsland?.enemyTypes;
         }
 
+        public void ResetForAscension()
+        {
+            _completedIslands.Clear();
+            _unlockedIslands.Clear();
+            _unlockedIslands.Add(0); // Island 1 always unlocked
+            _currentIslandIndex = 0;
+
+            EventBus.Publish(new IslandChangedEvent
+            {
+                IslandIndex = 0,
+                IslandData = CurrentIsland
+            });
+        }
+
+        public int HighestCompletedIsland
+        {
+            get
+            {
+                int highest = 0;
+                foreach (int idx in _completedIslands)
+                    if (idx + 1 > highest) highest = idx + 1;
+                return highest;
+            }
+        }
+
         void OnDestroy()
         {
             if (Instance == this) Instance = null;

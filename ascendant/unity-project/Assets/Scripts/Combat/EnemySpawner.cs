@@ -58,6 +58,20 @@ namespace Ascendant.Combat
             }
         }
 
+        public void SpawnSingleEnemy(EnemyData data, int stage)
+        {
+            if (_enemyPrefab == null || data == null) return;
+
+            float x = Random.Range(_spawnXMin, _spawnXMax);
+            float y = Random.Range(_spawnYMin, _spawnYMax);
+            Vector3 pos = new Vector3(x, y, 0f);
+
+            var parent = _spawnParent != null ? _spawnParent : transform;
+            var enemy = Instantiate(_enemyPrefab, pos, Quaternion.identity, parent);
+            enemy.Initialize(data, stage);
+            EnemyManager.Instance?.Register(enemy);
+        }
+
         void SpawnEnemy(EnemyData data, int stage, int index, int total)
         {
             // Distribute enemies vertically within the spawn area

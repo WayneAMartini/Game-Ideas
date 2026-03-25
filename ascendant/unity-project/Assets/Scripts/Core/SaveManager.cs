@@ -41,6 +41,9 @@ namespace Ascendant.Core
         public int NotifQuietStart = 22;
         public int NotifQuietEnd = 8;
 
+        // Phase 6: Ascension data
+        public Progression.AscensionSaveData AscensionData;
+
         // Phase 8: Economy data
         public Economy.WalletSaveData WalletData;
         public Economy.GachaSaveData GachaData;
@@ -219,6 +222,9 @@ namespace Ascendant.Core
                 save.NotifQuietEnd = notif.QuietHoursEnd;
             }
 
+            // Phase 6: Ascension data
+            save.AscensionData = GatherAscensionData();
+
             // Phase 8: Economy data
             var wallet = Economy.Wallet.Instance;
             if (wallet != null)
@@ -252,9 +258,85 @@ namespace Ascendant.Core
 
         void ApplySaveData(SaveData save)
         {
-            // Save data is applied by each system reading from SaveManager.CurrentSave on init.
-            // This method triggers the event so systems can respond.
+            // Phase 6: Restore ascension state
+            ApplyAscensionData(save.AscensionData);
+
             Debug.Log($"[SaveManager] Loaded save from {DateTimeOffset.FromUnixTimeSeconds(save.SaveTimestampUnix).LocalDateTime}");
+        }
+
+        Progression.AscensionSaveData GatherAscensionData()
+        {
+            var data = new Progression.AscensionSaveData();
+
+            // Tier/ascension counts
+            var tierSystem = Progression.TierBonusSystem.Instance;
+            if (tierSystem != null)
+            {
+                foreach (var kvp in tierSystem.GetAllAscensionCounts())
+                {
+                    var hero = Party.PartyManager.Instance?.GetHero(kvp.Key);
+                    data.HeroAscensions.Add(new Progression.HeroAscensionData
+                    {
+                        HeroSlot = kvp.Key,
+                        ClassId = hero?.Data?.classId ?? "",
+                        AscensionCount = kvp.Value,
+                        HighestIslandReached = Progression.AscensionSystem.Instance?.GetHighestIsland(kvp.Key) ?? 1
+                    });
+                }
+            }
+
+            // Ascension skill tree
+            var ascTree = Progression.AscensionSkillTree.Instance;
+            if (ascTree != null)
+            {
+                foreach (var nodeId in ascTree.GetPurchasedNodeIds())
+                {
+                    data.SkillTreeNodes.Add(new Progression.AscensionSkillTreeSaveData
+                    {
+                        NodeId = nodeId
+                    });
+                }
+            }
+
+            // Demigods
+            var demigodSystem = Progression.DemigodSystem.Instance;
+            if (demigodSystem != null)
+                data.Demigods = demigodSystem.GatherSaveData();
+
+            return data;
+        }
+
+        void ApplyAscensionData(Progression.AscensionSaveData data)
+        {
+            if (data == null) return;
+
+            // Restore ascension counts
+            var tierSystem = Progression.TierBonusSystem.Instance;
+            if (tierSystem != null && data.HeroAscensions != null)
+            {
+                var counts = new Dictionary<int, int>();
+                foreach (var ha in data.HeroAscensions)
+                {
+                    counts[ha.HeroSlot] = ha.AscensionCount;
+                    Progression.AscensionSystem.Instance?.SetHighestIsland(ha.HeroSlot, ha.HighestIslandReached);
+                }
+                tierSystem.LoadAscensionCounts(counts);
+            }
+
+            // Restore ascension skill tree
+            var ascTree = Progression.AscensionSkillTree.Instance;
+            if (ascTree != null && data.SkillTreeNodes != null)
+            {
+                var nodeIds = new List<string>();
+                foreach (var n in data.SkillTreeNodes)
+                    nodeIds.Add(n.NodeId);
+                ascTree.LoadPurchasedNodes(nodeIds);
+            }
+
+            // Restore demigods
+            var demigodSystem = Progression.DemigodSystem.Instance;
+            if (demigodSystem != null && data.Demigods != null)
+                demigodSystem.LoadSaveData(data.Demigods);
         }
 
         static byte[] Encrypt(string plainText)

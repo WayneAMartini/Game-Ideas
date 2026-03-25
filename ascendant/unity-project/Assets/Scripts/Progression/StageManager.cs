@@ -259,6 +259,23 @@ namespace Ascendant.Progression
             _spawner?.SpawnWave(_currentStage);
         }
 
+        public void ResetForAscension()
+        {
+            _currentIsland = 1;
+            _currentStage = 1;
+            _isTransitioning = false;
+            _transitionTimer = 0f;
+
+            if (IslandManager.Instance != null)
+            {
+                var island = IslandManager.Instance.CurrentIsland;
+                if (island != null)
+                    BiomeEffectSystem.Instance?.SetBiome(island.biomeData);
+            }
+
+            StartStage();
+        }
+
         void OnDestroy()
         {
             if (Instance == this) Instance = null;
