@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WolfEnemyData
   m_EditorClassIdentifier: Ascendant::Ascendant.Combat.EnemyData
   enemyName: Wolf
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 6708d118a0ac64c14b367e483496f045, type: 3}
   affinity: 0
   category: 0
   attackType: 0

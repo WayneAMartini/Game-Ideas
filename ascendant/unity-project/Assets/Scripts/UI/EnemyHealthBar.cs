@@ -12,26 +12,46 @@ namespace Ascendant.UI
 
         Enemy _enemy;
         Transform _enemyTransform;
+        Canvas _healthCanvas;
 
         public void Initialize(Enemy enemy)
         {
             _enemy = enemy;
             _enemyTransform = enemy.transform;
-            _slider.value = 1f;
+            if (_slider != null)
+                _slider.value = 1f;
+        }
+
+        void Start()
+        {
+            // Auto-initialize from sibling Enemy component when on the same GameObject
+            if (_enemy == null)
+            {
+                var enemy = GetComponent<Enemy>();
+                if (enemy != null)
+                    Initialize(enemy);
+            }
+            _healthCanvas = GetComponentInChildren<Canvas>();
         }
 
         void LateUpdate()
         {
-            if (_enemy == null || _enemy.IsDead)
+            if (_enemy == null)
+                return; // Not initialized yet — skip, don't destroy
+
+            if (_enemy.IsDead)
             {
-                Destroy(gameObject);
+                // Hide health bar canvas, don't destroy the enemy root
+                if (_healthCanvas != null)
+                    _healthCanvas.gameObject.SetActive(false);
                 return;
             }
 
-            // Follow enemy
-            transform.position = _enemyTransform.position + _offset;
+            // Health bar canvas follows via local offset (child of enemy)
+            // No need to reposition if it's a child object
 
             // Update fill
+            if (_slider == null) return;
             float pct = _enemy.CurrentHp / _enemy.MaxHp;
             _slider.value = pct;
 
